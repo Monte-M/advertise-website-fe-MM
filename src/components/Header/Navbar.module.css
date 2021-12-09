@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: rgb(241, 239, 239);
+  box-shadow: 1px 1px 3px gray;
+}
+
+.container img {
+  width: 150px;
+}
+
+.container nav a {
+  margin: 10px;
+  font-size: 18px;
+  transition: 0.3s ease-in;
+  font-weight: bold;
+}
+
+.container a:hover {
+  color: #1aa78e;
+}

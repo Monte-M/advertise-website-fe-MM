@@ -9,15 +9,19 @@ import { useHistory } from "react-router";
 import css from "./LoginForm.module.css";
 
 const formFields = [
-  { name: "email", placeholder: "Email" },
-  { name: "password", placeholder: "Password" },
+  { name: "title", placeholder: "Title" },
+  { name: "body", placeholder: "Description", type: "textarea" },
+  { name: "price", placeholder: "Price", type: "number" },
+  { name: "image", placeholder: "Image" },
 ];
 
 const initInputs = {
-  email: "",
-  password: "",
+  title: "",
+  body: "",
+  price: "",
+  image: "",
 };
-const LoginForm = () => {
+const AddItemForm = () => {
   const [response, setResponse] = useState([]);
   const history = useHistory();
 
@@ -29,8 +33,10 @@ const LoginForm = () => {
   const formik = useFormik({
     initialValues: { ...initInputs },
     validationSchema: Yup.object({
-      email: Yup.string().email().required(),
-      password: Yup.string().min(6).required(),
+      title: Yup.string().min(5).max(25).required(),
+      body: Yup.string().min(10).max(300).required(),
+      price: Yup.number().required(),
+      image: Yup.string().url().required(),
     }),
     onSubmit: (values) => {
       postContactForm(values);
@@ -54,25 +60,27 @@ const LoginForm = () => {
   return (
     <>
       <form onSubmit={formik.handleSubmit} className={css.formContainer}>
-        <h1>Login here</h1>
-        {formFields.map(({ name, placeholder }) => (
+        <h1>Post new AD</h1>
+        {formFields.map(({ name, placeholder, type }) => (
           <Input
             key={name}
             value={formik.values[name]}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             name={name}
+            type={type}
             placeholder={placeholder}
             error={formik.touched[name] && formik.errors[name]}
           />
         ))}
-        <Button type='submit'>Login</Button>
+
+        <Button type='submit'>Post</Button>
       </form>
     </>
   );
 };
 
-export default LoginForm;
+export default AddItemForm;
 
 function responceToErrors(response) {
   const arrayStructure = response.map((errObj) => ({

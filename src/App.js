@@ -2,6 +2,7 @@ import { Toaster } from "react-hot-toast";
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Header/Navbar";
+import AddItemPage from "./pages/AddItemPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -17,6 +18,9 @@ function App() {
         </Route>
         <Route path='/register'>
           <RegisterPage />
+        </Route>
+        <Route path='/addItem'>
+          <AddItemPage />
         </Route>
         <Route exact path='/'>
           <HomePage />

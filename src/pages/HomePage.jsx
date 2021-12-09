@@ -3,7 +3,7 @@ import AdsList from "../components/Lists/AdsList";
 
 function HomePage() {
   return (
-    <div>
+    <div className='container'>
       <AdsList />
     </div>
   );

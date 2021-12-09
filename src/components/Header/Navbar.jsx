@@ -16,7 +16,9 @@ function Navbar() {
         <Link to='/'>Home</Link>
         <Link to='/login'>Login</Link>
         <Link to='/register'>Register</Link>
-        <AdButton>Post Your Ad</AdButton>
+        <Link to='/addItem'>
+          <AdButton>Post Your Ad</AdButton>
+        </Link>
       </nav>
     </div>
   );

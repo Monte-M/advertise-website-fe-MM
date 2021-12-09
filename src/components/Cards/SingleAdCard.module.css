@@ -1,0 +1,40 @@
+.container {
+  width: 300px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px gray;
+}
+
+.imgContainer {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(226, 226, 226);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.container img {
+  width: 200px;
+}
+
+.adContainer {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.adContainer h2 {
+  margin: 10px 0;
+}
+
+.adContainer i {
+  color: #1aa78e;
+}
+
+.adContainer h4 {
+  margin: 0 5px;
+}
+
+.singleTitle {
+  display: flex;
+  margin: 5px 0;
+}

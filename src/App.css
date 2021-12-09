@@ -8,9 +8,16 @@
 
 body {
   font-family: "Montserrat", sans-serif;
+  background-color: rgb(241, 239, 239);
 }
 
 a {
   text-decoration: none;
   color: inherit;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }

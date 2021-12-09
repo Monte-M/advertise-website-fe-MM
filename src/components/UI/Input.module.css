@@ -1,0 +1,25 @@
+.input {
+  width: 100%;
+  padding: 19px;
+  color: #333;
+  border: 1px solid #bbbbbb;
+  border-radius: 10px;
+}
+.input.error-field {
+  border-color: tomato;
+}
+
+.error-message {
+  color: tomato;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
+.input-group textarea {
+  font-family: Lato;
+  font-size: 13px;
+  color: #333;
+  font-weight: normal;
+}

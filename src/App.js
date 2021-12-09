@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Header/Navbar";
@@ -9,6 +10,7 @@ function App() {
   return (
     <div className='App'>
       <Navbar />
+      <Toaster />
       <Switch>
         <Route path='/login'>
           <LoginPage />

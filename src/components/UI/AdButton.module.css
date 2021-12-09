@@ -1,7 +1,7 @@
 .btn {
   padding: 15px;
   color: #fff;
-  background-color: #1aa78e;
+  background-color: #fcaf01;
   text-align: center;
   border: none;
   font-size: 14px;
@@ -12,10 +12,5 @@
 }
 
 .btn:hover {
-  background-color: #fcaf01;
-}
-
-.btn span {
-  font-weight: bold;
-  font-size: 14px;
+  background-color: #1aa78e;
 }

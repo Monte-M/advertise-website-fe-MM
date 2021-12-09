@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AdButton from "../UI/AdButton";
 import css from "./Navbar.module.css";
 
 function Navbar() {
@@ -15,6 +16,7 @@ function Navbar() {
         <Link to='/'>Home</Link>
         <Link to='/login'>Login</Link>
         <Link to='/register'>Register</Link>
+        <AdButton>Post Your Ad</AdButton>
       </nav>
     </div>
   );

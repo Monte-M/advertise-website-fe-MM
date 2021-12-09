@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AdButton from "../UI/AdButton";
+import AdButton from "../UI/Buttons/AdButton";
 import css from "./Navbar.module.css";
 
 function Navbar() {

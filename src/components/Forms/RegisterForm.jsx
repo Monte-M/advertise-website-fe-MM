@@ -1,9 +1,9 @@
-import Input from "./../UI/Input";
+import Input from "./../UI/Inputs/Input";
 import { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
-import Button from "./../UI/Button";
+import Button from "./../UI/Buttons/Button";
 import { postFetch } from "../../utils/fetch";
 import { useHistory } from "react-router";
 import css from "./LoginForm.module.css";

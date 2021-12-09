@@ -6,7 +6,9 @@ import Navbar from "./components/Header/Navbar";
 import AddItemPage from "./pages/AddItemPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
+import MyAdsPage from "./pages/MyAdsPage";
 import RegisterPage from "./pages/RegisterPage";
+import SingleAdPage from "./pages/SingleAdPage";
 
 function App() {
   return (
@@ -14,6 +16,9 @@ function App() {
       <Navbar />
       <Toaster />
       <Switch>
+        <Route path='/single/'>
+          <SingleAdPage />
+        </Route>
         <Route path='/login'>
           <LoginPage />
         </Route>
@@ -22,6 +27,9 @@ function App() {
         </Route>
         <Route path='/addItem'>
           <AddItemPage />
+        </Route>
+        <Route path='/myAds'>
+          <MyAdsPage />
         </Route>
         <Route exact path='/'>
           <HomePage />

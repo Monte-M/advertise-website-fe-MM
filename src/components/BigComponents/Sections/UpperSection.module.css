@@ -1,0 +1,20 @@
+.topContainer {
+  display: flex;
+}
+
+.topContainer div {
+  margin: 10px 20px 0 0;
+}
+
+.singleTitle {
+  display: flex;
+}
+
+.singleTitle h4 {
+  font-weight: normal;
+}
+
+.singleTitle i {
+  color: #1aa78e;
+  margin: 0 7px 0 0;
+}

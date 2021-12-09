@@ -1,6 +1,7 @@
 import { Toaster } from "react-hot-toast";
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
+import Footer from "./components/Footer/Footer";
 import Navbar from "./components/Header/Navbar";
 import AddItemPage from "./pages/AddItemPage";
 import HomePage from "./pages/HomePage";
@@ -26,6 +27,7 @@ function App() {
           <HomePage />
         </Route>
       </Switch>
+      <Footer />
     </div>
   );
 }

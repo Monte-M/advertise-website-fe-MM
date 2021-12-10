@@ -3,6 +3,7 @@
   border-radius: 5px;
   box-shadow: 1px 1px 3px gray;
   cursor: pointer;
+  margin: 15px;
 }
 
 .imgContainer {
@@ -14,7 +15,8 @@
 }
 
 .container img {
-  width: 200px;
+  height: 180px;
+  width: auto;
 }
 
 .adContainer {

@@ -7,18 +7,20 @@ import Button from "./../UI/Buttons/Button";
 import { postFetch } from "../../utils/fetch";
 import { useHistory } from "react-router";
 import css from "./LoginForm.module.css";
+import { useAuthCtx } from "../../store/AuthContext";
 
 const formFields = [
   { name: "email", placeholder: "Email" },
-  { name: "password", placeholder: "Password" },
+  { name: "password", placeholder: "Password", type: "password" },
 ];
 
 const initInputs = {
-  email: "",
-  password: "",
+  email: "mantas@mantas.com",
+  password: "123456",
 };
 const LoginForm = () => {
   const [response, setResponse] = useState([]);
+  const authCtx = useAuthCtx();
   const history = useHistory();
 
   useEffect(() => {
@@ -38,16 +40,19 @@ const LoginForm = () => {
   });
 
   async function postContactForm(values) {
-    const data = await postFetch("http://194.5.157.135:3001/clients", values);
+    const data = await postFetch("http://localhost:3001/users/login", values);
 
     if (data.error) {
       setResponse(data.error);
       toast.error("Please check the form");
     }
     if (data.msg) {
-      toast.success("Client added");
-
-      history.push("/orders/2");
+      // history.push("/orders/2");
+      const token = data.loggedInUser.token;
+      const id = data.loggedInUser.id;
+      console.log(id);
+      authCtx.login(formik.values.email, token, id);
+      history.push("/");
     }
   }
 
@@ -55,13 +60,14 @@ const LoginForm = () => {
     <>
       <form onSubmit={formik.handleSubmit} className={css.formContainer}>
         <h1>Login here</h1>
-        {formFields.map(({ name, placeholder }) => (
+        {formFields.map(({ name, placeholder, type }) => (
           <Input
             key={name}
             value={formik.values[name]}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             name={name}
+            type={type}
             placeholder={placeholder}
             error={formik.touched[name] && formik.errors[name]}
           />

@@ -60,7 +60,6 @@ const RegisterForm = () => {
       "http://localhost:3001/users/register",
       values
     );
-    console.log(data);
 
     if (data.error) {
       setResponse(data.error);

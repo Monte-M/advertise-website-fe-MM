@@ -9,14 +9,17 @@ import LoginPage from "./pages/LoginPage";
 import MyAdsPage from "./pages/MyAdsPage";
 import RegisterPage from "./pages/RegisterPage";
 import SingleAdPage from "./pages/SingleAdPage";
+import { useAuthCtx } from "./store/AuthContext";
 
 function App() {
+  const authCtx = useAuthCtx();
+  const loggedIn = authCtx.isLoggedIn;
   return (
     <div className='App'>
       <Navbar />
       <Toaster />
       <Switch>
-        <Route path='/single/'>
+        <Route path='/single/:id'>
           <SingleAdPage />
         </Route>
         <Route path='/login'>
@@ -25,12 +28,16 @@ function App() {
         <Route path='/register'>
           <RegisterPage />
         </Route>
-        <Route path='/addItem'>
-          <AddItemPage />
-        </Route>
-        <Route path='/myAds'>
-          <MyAdsPage />
-        </Route>
+        {loggedIn && (
+          <Route path='/addItem'>
+            <AddItemPage />
+          </Route>
+        )}
+        {loggedIn && (
+          <Route path='/myAds'>
+            <MyAdsPage />
+          </Route>
+        )}
         <Route exact path='/'>
           <HomePage />
         </Route>

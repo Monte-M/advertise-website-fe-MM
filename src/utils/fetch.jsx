@@ -1,4 +1,4 @@
-const baseUrl = process.env.REACT_APP_BE_URL;
+const baseUrl = "http://localhost:3001";
 export async function postFetch(url, dataToSend) {
   try {
     const resp = await fetch(url, {
@@ -8,17 +8,29 @@ export async function postFetch(url, dataToSend) {
       },
       body: JSON.stringify(dataToSend),
     });
-    // console.log('resp ===', resp);
     const data = await resp.json();
     return data;
-  } catch (error) {
-    console.log("catch block error", error);
-  }
+  } catch (error) {}
 }
 
-export async function getFetchData(urlEndPoint) {
+export async function postAuthenticatedFetch(url, dataToSend, token) {
   try {
-    const resp = await fetch(`${baseUrl}${urlEndPoint}`, {
+    const resp = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(dataToSend),
+    });
+    const data = await resp.json();
+    return data;
+  } catch (error) {}
+}
+
+export async function getFetchData(url) {
+  try {
+    const resp = await fetch(url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -26,9 +38,6 @@ export async function getFetchData(urlEndPoint) {
     });
     const data = await resp.json();
 
-    console.log("data ===", data);
     return data;
-  } catch (error) {
-    console.log("getFetchData catch block error", error);
-  }
+  } catch (error) {}
 }

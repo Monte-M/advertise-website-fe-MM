@@ -2,18 +2,15 @@ import React from "react";
 import css from "./ProductInfo.module.css";
 import ProductInfoSingle from "./ProductInfoSingle";
 
-const productInfo = [
-  { id: 1, title: "Condition", description: "Used" },
-  { id: 2, title: "Category", description: "Laptops" },
-];
-
-function ProductInfo() {
+function ProductInfo({ description, category }) {
   return (
     <div className={css.container}>
       <h2>Product Info:</h2>
-      {productInfo.map(({ id, title, description }) => (
+      <ProductInfoSingle title='Condition' description={description} />
+      <ProductInfoSingle title='Category' description={category} />
+      {/* {productInfo.map(({ id, title, description }) => (
         <ProductInfoSingle key={id} title={title} description={description} />
-      ))}
+      ))} */}
     </div>
   );
 }

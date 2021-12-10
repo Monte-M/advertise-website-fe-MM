@@ -1,9 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuthCtx } from "../../store/AuthContext";
 import AdButton from "../UI/Buttons/AdButton";
 import css from "./Navbar.module.css";
 
 function Navbar() {
+  const authCtx = useAuthCtx();
+  const loggedIn = authCtx.isLoggedIn;
+  const logout = authCtx.logout;
   return (
     <div className={css.container}>
       <Link to='/'>
@@ -14,12 +18,20 @@ function Navbar() {
       </Link>
       <nav>
         <Link to='/'>Home</Link>
-        <Link to='/login'>Login</Link>
-        <Link to='/register'>Register</Link>
-        <Link to='/myAds'>My Ads</Link>
-        <Link to='/addItem'>
-          <AdButton>Post New Ad</AdButton>
-        </Link>
+        {!loggedIn && <Link to='/register'>Register</Link>}
+        {loggedIn && <Link to='/myAds'>My Ads</Link>}
+        {loggedIn ? (
+          <Link to='/' onClick={logout}>
+            Logout
+          </Link>
+        ) : (
+          <Link to='/login'>Login</Link>
+        )}
+        {loggedIn && (
+          <Link to='/addItem'>
+            <AdButton>Post New Ad</AdButton>
+          </Link>
+        )}
       </nav>
     </div>
   );

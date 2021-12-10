@@ -28,14 +28,29 @@
 }
 
 .adContainer i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: #1aa78e;
-}
-
-.adContainer h4 {
-  margin: 0 5px;
 }
 
 .singleTitle {
   display: flex;
   margin: 5px 0;
+}
+
+.singleTitle div {
+  width: 15px;
+}
+
+.singleTitle h4 {
+  margin: 0 0 5px 15px;
+}
+
+.highlight {
+  background-color: #fcaf01;
+  color: #fff;
+  padding: 5px;
+  width: 100px;
+  border-radius: 5px;
 }

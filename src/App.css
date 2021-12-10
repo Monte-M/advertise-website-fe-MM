@@ -9,7 +9,7 @@
 body {
   font-family: "Montserrat", sans-serif;
   background-color: rgb(241, 239, 239);
-  min-height: 100%;
+  min-height: 100vh;
 }
 
 a {
@@ -21,4 +21,5 @@ a {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  min-height: 83vh;
 }

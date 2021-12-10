@@ -2,6 +2,19 @@
   display: flex;
 }
 
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  background-color: #fcaf01;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+}
+
 .topContainer div {
   margin: 10px 20px 0 0;
 }

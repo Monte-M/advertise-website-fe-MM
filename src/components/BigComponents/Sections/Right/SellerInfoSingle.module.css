@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  border-bottom: 1px solid #bbbbbb;
+  width: 100%;
+}
+
+.iconContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 20px;
+}
+
+.iconContainer i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: #fcaf01;
+  background-color: #e4e4e4;
+  width: 35px;
+  height: 35px;
+}
+
+.contact {
+  margin: 5px 0 20px 20px;
+  color: #1aa78e;
+}

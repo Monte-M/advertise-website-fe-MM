@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  background-color: #fff;
+  border: 1px solid #bbbbbb;
+  border-radius: 5px;
+}
+
+.container h2 {
+  margin: 10px 20px;
+}
+
+.container img {
+  width: auto;
+  height: 150px;
+}
+
+.username {
+  color: #fcaf01;
+}

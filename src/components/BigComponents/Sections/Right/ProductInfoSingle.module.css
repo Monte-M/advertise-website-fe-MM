@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  border-bottom: 1px solid #bbbbbb;
+  width: 100%;
+}
+
+.highlight {
+  margin-left: 10px;
+  color: #1aa78e;
+}
+
+.specifics {
+  display: flex;
+  margin: 20px 20px;
+}

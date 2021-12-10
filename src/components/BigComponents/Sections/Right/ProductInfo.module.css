@@ -1,13 +1,13 @@
 .container {
   display: flex;
-  justify-content: space-between;
-}
-
-.containerLeft {
-  margin: 20px 0;
+  flex-direction: column;
+  margin-top: 20px;
   background-color: #fff;
   border: 1px solid #bbbbbb;
-  padding: 60px 40px;
   border-radius: 5px;
-  width: 80%;
+}
+
+.container h2 {
+  margin-left: 20px;
+  margin-top: 60px;
 }

@@ -9,15 +9,24 @@ import { useHistory } from "react-router";
 import css from "./LoginForm.module.css";
 
 const formFields = [
+  { name: "username", placeholder: "Username" },
   { name: "email", placeholder: "Email" },
-  { name: "password", placeholder: "Password" },
-  { name: "repeatPassword", placeholder: "Repeat Password" },
+  { name: "city", placeholder: "City" },
+  { name: "phone_number", placeholder: "Phone number" },
+  { name: "image", placeholder: "Image" },
+  { name: "password", placeholder: "Password", type: "password" },
+  { name: "password2", placeholder: "Repeat Password", type: "password" },
 ];
 
 const initInputs = {
-  email: "",
-  password: "",
-  repeatPassword: "",
+  username: "Monte",
+  email: "mantas@mantas.com",
+  city: "Kaunas",
+  phone_number: "+37060685258",
+  image:
+    "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.logolynx.com%2Fimages%2Flogolynx%2F03%2F039b004617d1ef43cf1769aae45d6ea2.png&f=1&nofb=1",
+  password: "123456",
+  password2: "123456",
 };
 const RegisterForm = () => {
   const [response, setResponse] = useState([]);
@@ -31,9 +40,13 @@ const RegisterForm = () => {
   const formik = useFormik({
     initialValues: { ...initInputs },
     validationSchema: Yup.object({
+      username: Yup.string().required(),
       email: Yup.string().email().required(),
+      city: Yup.string().min(3).required(),
+      phone_number: Yup.string().min(8).required(),
+      image: Yup.string().required(),
       password: Yup.string().min(6).required(),
-      repeatPassword: Yup.string()
+      password2: Yup.string()
         .oneOf([Yup.ref("password"), null], "Passwords must match")
         .required("This field is required"),
     }),
@@ -43,15 +56,19 @@ const RegisterForm = () => {
   });
 
   async function postContactForm(values) {
-    const data = await postFetch("http://194.5.157.135:3001/clients", values);
+    const data = await postFetch(
+      "http://localhost:3001/users/register",
+      values
+    );
+    console.log(data);
 
     if (data.error) {
       setResponse(data.error);
       toast.error("Please check the form");
     }
     if (data.msg) {
-      toast.success("Client added");
-      history.push("/orders/2");
+      toast.success("Successfully registered");
+      // history.push("/orders/2");
     }
   }
 
@@ -59,13 +76,14 @@ const RegisterForm = () => {
     <>
       <form onSubmit={formik.handleSubmit} className={css.formContainer}>
         <h1>Register here</h1>
-        {formFields.map(({ name, placeholder }) => (
+        {formFields.map(({ name, placeholder, type }) => (
           <Input
             key={name}
             value={formik.values[name]}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             name={name}
+            type={type}
             placeholder={placeholder}
             error={formik.touched[name] && formik.errors[name]}
           />

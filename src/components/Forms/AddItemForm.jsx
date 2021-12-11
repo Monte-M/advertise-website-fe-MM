@@ -77,8 +77,7 @@ const AddItemForm = () => {
     }
     if (data.msg) {
       toast.success("Advertise successfully added");
-
-      // history.push("/orders/2");
+      history.push("/");
     }
   }
 

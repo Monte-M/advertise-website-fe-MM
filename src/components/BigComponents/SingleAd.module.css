@@ -11,3 +11,7 @@
   border-radius: 5px;
   width: 80%;
 }
+
+.rightContainer {
+  max-width: 230px;
+}

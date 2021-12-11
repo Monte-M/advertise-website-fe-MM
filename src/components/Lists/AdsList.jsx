@@ -10,6 +10,8 @@ function AdsList() {
     setItemsArr(data.data);
   };
 
+  console.log(itemsArr);
+
   useEffect(() => {
     getItems();
   }, []);

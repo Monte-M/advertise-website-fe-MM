@@ -1,0 +1,77 @@
+.container {
+  width: 300px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px gray;
+  cursor: pointer;
+  margin: 15px;
+}
+
+.imgContainer {
+  display: flex;
+  justify-content: center;
+  background-color: rgb(226, 226, 226);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.container img {
+  height: 180px;
+  width: auto;
+}
+
+.adContainer {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.adContainer h2 {
+  margin: 10px 0;
+}
+
+.adContainer i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #1aa78e;
+}
+
+.singleTitle {
+  display: flex;
+  margin: 5px 0;
+}
+
+.singleTitle div {
+  width: 15px;
+}
+
+.singleTitle h4 {
+  margin: 0 0 5px 15px;
+}
+
+.highlight {
+  background-color: #fcaf01;
+  color: #fff;
+  padding: 5px;
+  width: 100px;
+  border-radius: 5px;
+}
+
+.lowerSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lowerSection button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: tomato;
+  font-size: 18px;
+  height: 40px;
+}
+
+.lowerSection button:hover {
+  background-color: red;
+}

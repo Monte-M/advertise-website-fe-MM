@@ -1,8 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Icon from "../UI/Icons/Icon";
-import css from "./SingleAdCard.module.css";
-function SingleAdCard({ item, date }) {
+import css from "./MySingleAdCard.module.css";
+import Button from "../UI/Buttons/Button";
+import { deleteFetch } from "../../utils/fetch";
+import { useAuthCtx } from "../../store/AuthContext";
+
+function MySingleAdCard({ item, date }) {
   const dateOptions = {
     dateStyle: "medium",
     timeStyle: "medium",
@@ -10,6 +14,18 @@ function SingleAdCard({ item, date }) {
 
   const badDate = new Date(date);
   const goodDate = badDate.toLocaleString("lt-Lt", dateOptions);
+  const authCtx = useAuthCtx();
+  const token = authCtx.token;
+
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    const data = await deleteFetch(
+      `http://localhost:3001/items/delete/${item.id}`,
+      token
+    );
+    window.location.reload();
+  };
+
   return (
     <div className={css.container}>
       <Link to={`/single/${item.id}`}>
@@ -40,11 +56,14 @@ function SingleAdCard({ item, date }) {
             <h4>{item.category}</h4>
           </div>
 
-          <h2 className={css.highlight}>$ {item.price}</h2>
+          <div className={css.lowerSection}>
+            <h2 className={css.highlight}>$ {item.price}</h2>
+            <Button onClick={handleDelete}>Delete</Button>
+          </div>
         </div>
       </Link>
     </div>
   );
 }
 
-export default SingleAdCard;
+export default MySingleAdCard;

@@ -1,4 +1,3 @@
-const baseUrl = "http://localhost:3001";
 export async function postFetch(url, dataToSend) {
   try {
     const resp = await fetch(url, {
@@ -34,6 +33,36 @@ export async function getFetchData(url) {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
+      },
+    });
+    const data = await resp.json();
+
+    return data;
+  } catch (error) {}
+}
+
+export async function getAuthenticatedFetchData(url, token) {
+  try {
+    const resp = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await resp.json();
+
+    return data;
+  } catch (error) {}
+}
+
+export async function deleteFetch(url, token) {
+  try {
+    const resp = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
     });
     const data = await resp.json();

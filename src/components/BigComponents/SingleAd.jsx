@@ -15,8 +15,6 @@ function SingleAd() {
     setSingleAd(data.data);
   };
 
-  const getSellerInfo = async () => {};
-
   console.log(singleAd);
 
   useEffect(() => {
@@ -37,12 +35,18 @@ function SingleAd() {
           description={singleAd[0]?.description}
         />
       </div>
-      <div>
+      <div className={css.rightContainer}>
         <ProductInfo
           description={singleAd[0]?.item_condition}
-          category='Category'
+          category={singleAd[0]?.category}
         />
-        <SellerInfo image={singleAd[0]?.item_condition} />
+        <SellerInfo
+          image={singleAd[0]?.user_image}
+          username={singleAd[0]?.username}
+          phone={singleAd[0]?.phone_number}
+          email={singleAd[0]?.email}
+          city={singleAd[0]?.city}
+        />
       </div>
     </div>
   );

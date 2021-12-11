@@ -1,10 +1,12 @@
 import React from "react";
-import AdsList from "../components/Lists/AdsList";
+import MyAdsList from "../components/Lists/MyAdsList";
+import css from "./styles/MyAdsPage.module.css";
 
 function MyAdsPage() {
   return (
     <div className='container'>
-      <AdsList />
+      <h1 className={css.container}>My Ads</h1>
+      <MyAdsList />
     </div>
   );
 }

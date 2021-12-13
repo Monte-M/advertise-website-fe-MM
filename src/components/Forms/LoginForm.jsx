@@ -15,7 +15,7 @@ const formFields = [
 ];
 
 const initInputs = {
-  email: "mantas@mantas.com",
+  email: "@gmail.com",
   password: "123456",
 };
 const LoginForm = () => {
@@ -50,7 +50,7 @@ const LoginForm = () => {
       // history.push("/orders/2");
       const token = data.loggedInUser.token;
       const id = data.loggedInUser.id;
-      console.log(id);
+
       authCtx.login(formik.values.email, token, id);
       history.push("/");
     }

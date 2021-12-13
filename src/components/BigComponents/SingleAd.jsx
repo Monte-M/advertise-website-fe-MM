@@ -15,8 +15,6 @@ function SingleAd() {
     setSingleAd(data.data);
   };
 
-  console.log(singleAd);
-
   useEffect(() => {
     getSinglePost();
   }, []);

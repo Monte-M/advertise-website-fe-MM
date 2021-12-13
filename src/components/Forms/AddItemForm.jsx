@@ -4,45 +4,48 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
 import Button from "./../UI/Buttons/Button";
-import { postAuthenticatedFetch } from "../../utils/fetch";
+import { getFetchData, postAuthenticatedFetch } from "../../utils/fetch";
 import { useHistory } from "react-router";
-import css from "./LoginForm.module.css";
+import css from "./AddItemForm.module.css";
 import { useAuthCtx } from "../../store/AuthContext";
 
 const formFields = [
   { name: "user_id", placeholder: "User ID", type: "hidden" },
-  { name: "category_id", placeholder: "Category ID" },
   { name: "title", placeholder: "Title" },
   { name: "description", placeholder: "Description", type: "textarea" },
   { name: "city", placeholder: "City" },
   { name: "price", placeholder: "Price", type: "number" },
-  { name: "item_condition", placeholder: "Item condition" },
   { name: "image", placeholder: "Image" },
 ];
 
 const AddItemForm = () => {
   const [response, setResponse] = useState([]);
+  const [categoriesArr, setCategoriesArr] = useState([]);
   const history = useHistory();
   const authCtx = useAuthCtx();
   const token = authCtx.token;
   const user_id = authCtx.id;
-  console.log(token);
-  console.log(authCtx.id);
 
   const initInputs = {
     user_id: user_id,
     category_id: "1",
-    title: "Macbook Air 2019",
-    description: "A very good computer",
-    price: "500",
-    city: "Kaunas",
-    item_condition: "Used",
+    title: "",
+    description: "",
+    price: "",
+    city: "",
+    item_condition: "New",
     image: "",
+  };
+
+  const getCategories = async () => {
+    const data = await getFetchData("http://localhost:3001/categories");
+    setCategoriesArr(data.data);
   };
 
   useEffect(() => {
     const errorObj = responceToErrors(response);
     formik.setErrors(errorObj);
+    getCategories();
   }, [response]);
 
   const formik = useFormik({
@@ -69,8 +72,6 @@ const AddItemForm = () => {
       token
     );
 
-    console.log(data);
-
     if (data.error) {
       setResponse(data.error);
       toast.error("Please check the form");
@@ -85,6 +86,36 @@ const AddItemForm = () => {
     <>
       <form onSubmit={formik.handleSubmit} className={css.formContainer}>
         <h1>Post new AD</h1>
+        <label htmlFor='category_id'>Select category:</label>
+        <select
+          className={css.select}
+          id='category_id'
+          name='category_id'
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={Number(formik.values.category_id)}
+          error={formik.touched.category_id && formik.errors.category_id}
+        >
+          {categoriesArr.map(({ id, category }) => (
+            <option key={id} value={id}>
+              {category}
+            </option>
+          ))}
+        </select>
+        <label htmlFor='item_condition'>Item condition:</label>
+        <select
+          className={css.select}
+          id='item_condition'
+          name='item_condition'
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          value={formik.values.item_condition}
+          error={formik.touched.item_condition && formik.errors.item_condition}
+        >
+          <option value='New'>New</option>
+          <option value='Used'>Used</option>
+        </select>
+
         {formFields.map(({ name, placeholder, type }) => (
           <Input
             key={name}

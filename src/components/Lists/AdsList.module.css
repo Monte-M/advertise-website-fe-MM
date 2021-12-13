@@ -1,6 +1,36 @@
 .container {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.categoryList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1aa78e;
+  height: 60px;
+  width: 80%;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+.categoryList h2 {
+  margin-right: 10px;
+}
+
+.categoryList select {
+  height: 30px;
+}
+
+.adsList {
+  display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   margin: 30px;
+}
+
+.highlight {
+  font-weight: bold;
 }

@@ -16,7 +16,6 @@ function MyAdsList() {
       token
     );
     setItemsArr(data.data);
-    console.log(data);
   };
 
   useEffect(() => {

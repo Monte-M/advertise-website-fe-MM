@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useAuthCtx } from "../../store/AuthContext";
 import AdButton from "../UI/Buttons/AdButton";
 import css from "./Navbar.module.css";
@@ -17,18 +17,30 @@ function Navbar() {
         />
       </Link>
       <nav>
-        <Link to='/'>Home</Link>
-        {!loggedIn && <Link to='/register'>Register</Link>}
-        {loggedIn && <Link to='/myAds'>My Ads</Link>}
-        {loggedIn ? (
-          <Link to='/' onClick={logout}>
-            Logout
-          </Link>
-        ) : (
-          <Link to='/login'>Login</Link>
+        <NavLink activeClassName='active' exact to='/'>
+          Home
+        </NavLink>
+        {!loggedIn && (
+          <NavLink activeClassName='active' to='/register'>
+            Register
+          </NavLink>
         )}
         {loggedIn && (
-          <Link to='/addItem'>
+          <NavLink activeClassName='active' to='/myAds'>
+            My Ads
+          </NavLink>
+        )}
+        {loggedIn ? (
+          <NavLink activeClassName='inActive' to='/' onClick={logout}>
+            Logout
+          </NavLink>
+        ) : (
+          <NavLink activeClassName='active' to='/login'>
+            Login
+          </NavLink>
+        )}
+        {loggedIn && (
+          <Link activeClassName='active' to='/addItem'>
             <AdButton>Post New Ad</AdButton>
           </Link>
         )}

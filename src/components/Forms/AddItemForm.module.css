@@ -1,3 +1,8 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
 .formContainer {
   display: flex;
   justify-content: center;
@@ -8,6 +13,7 @@
   margin: 50px 0;
   padding: 50px;
   border-radius: 5px;
+  min-width: 100%;
 }
 
 .formContainer h1 {
@@ -32,4 +38,43 @@
   margin: 10px 0;
   padding: 10px;
   width: 40%;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .formContainer {
+    display: flex;
+    justify-content: center;
+    min-width: 80%;
+  }
+
+  .formContainer div {
+    min-width: 439px;
+  }
+
+  .formContainer button {
+    min-width: 219px;
+  }
+
+  .formContainer select {
+    min-width: 439px;
+  }
+}
+
+@media (max-width: 450px) {
+  .formContainer div {
+    min-width: 300px;
+  }
+
+  .formContainer button {
+    min-width: 219px;
+  }
+
+  .formContainer select {
+    min-width: 300px;
+  }
 }

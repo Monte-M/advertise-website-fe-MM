@@ -97,7 +97,7 @@ const AddItemForm = () => {
   }
 
   return (
-    <>
+    <div className={css.container}>
       <form onSubmit={formik.handleSubmit} className={css.formContainer}>
         <h1>Post new AD</h1>
         <label htmlFor='category_id'>Select category:</label>
@@ -153,7 +153,7 @@ const AddItemForm = () => {
 
         <Button type='submit'>Post</Button>
       </form>
-    </>
+    </div>
   );
 };
 

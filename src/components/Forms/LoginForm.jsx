@@ -57,7 +57,7 @@ const LoginForm = () => {
   }
 
   return (
-    <>
+    <div className={css.container}>
       <form onSubmit={formik.handleSubmit} className={css.formContainer}>
         <h1>Login here</h1>
         {formFields.map(({ name, placeholder, type }) => (
@@ -74,7 +74,7 @@ const LoginForm = () => {
         ))}
         <Button type='submit'>Login</Button>
       </form>
-    </>
+    </div>
   );
 };
 

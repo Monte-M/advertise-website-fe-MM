@@ -72,7 +72,7 @@ const RegisterForm = () => {
   }
 
   return (
-    <>
+    <div className={css.container}>
       <form onSubmit={formik.handleSubmit} className={css.formContainer}>
         <h1>Register here</h1>
         {formFields.map(({ name, placeholder, type }) => (
@@ -89,7 +89,7 @@ const RegisterForm = () => {
         ))}
         <Button type='submit'>Register</Button>
       </form>
-    </>
+    </div>
   );
 };
 

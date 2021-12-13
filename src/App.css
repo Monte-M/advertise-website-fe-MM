@@ -18,16 +18,15 @@ a {
 }
 
 .container {
-  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  min-height: 83vh;
+  min-height: calc(100vh - 196px);
 }
 
 nav .active {
   color: #1aa78e;
 }
 
-.inActive {
-  color: inherit;
+nav .inActive {
+  color: black;
 }

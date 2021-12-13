@@ -15,7 +15,6 @@ const formFields = [
   { name: "description", placeholder: "Description", type: "textarea" },
   { name: "city", placeholder: "City" },
   { name: "price", placeholder: "Price", type: "number" },
-  { name: "image", placeholder: "Image" },
 ];
 
 const AddItemForm = () => {
@@ -29,10 +28,10 @@ const AddItemForm = () => {
   const initInputs = {
     user_id: user_id,
     category_id: "1",
-    title: "",
-    description: "",
-    price: "",
-    city: "",
+    title: "testtest",
+    description: "testtesttest",
+    price: "500",
+    city: "Kaunas",
     item_condition: "New",
     image: "",
   };
@@ -58,19 +57,34 @@ const AddItemForm = () => {
       city: Yup.string().required(),
       price: Yup.number().required(),
       item_condition: Yup.string().required(),
-      image: Yup.string().url().required(),
+      // image: Yup.string().url().required(),
     }),
     onSubmit: (values) => {
       postContactForm(values);
+      console.log(values);
     },
   });
 
   async function postContactForm(values) {
-    const data = await postAuthenticatedFetch(
-      "http://localhost:3001/items",
-      values,
-      token
-    );
+    const formData = new FormData();
+    formData.append("user_id", values.user_id);
+    formData.append("category_id", values.category_id);
+    formData.append("title", values.title);
+    formData.append("description", values.description);
+    formData.append("city", values.city);
+    formData.append("price", values.price);
+    formData.append("image", values.image);
+    console.log(formData.get("image"));
+
+    const resp = await fetch(`http://localhost:3001/items`, {
+      method: "POST",
+      headers: {
+        // "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    });
+    const data = await resp.json();
 
     if (data.error) {
       setResponse(data.error);
@@ -116,7 +130,7 @@ const AddItemForm = () => {
           <option value='Used'>Used</option>
         </select>
 
-        {formFields.map(({ name, placeholder, type }) => (
+        {formFields.map(({ name, placeholder, type, fileName }) => (
           <Input
             key={name}
             value={formik.values[name]}
@@ -128,6 +142,14 @@ const AddItemForm = () => {
             error={formik.touched[name] && formik.errors[name]}
           />
         ))}
+        <input
+          // value={formik.values.mainImage}
+          onChange={(e) =>
+            formik.setFieldValue("image", e.currentTarget.files[0])
+          }
+          type='file'
+          name='image'
+        />
 
         <Button type='submit'>Post</Button>
       </form>

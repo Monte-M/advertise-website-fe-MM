@@ -10,13 +10,16 @@ import SellerInfoSingle from "./SellerInfoSingle";
 function SellerInfo({ image, username, phone, email, city }) {
   return (
     <div className={css.container}>
-      <h2>Seller Info:</h2>
-      <img src={image} alt='' />
-      <h2 className={css.username}>{username}</h2>
-
-      <SellerInfoSingle title='Phone number' text={phone} />
-      <SellerInfoSingle title='Email' text={email} />
-      <SellerInfoSingle title='City' text={city} />
+      <div className={css.userInfo}>
+        <h2>Seller Info:</h2>
+        <img src={image} alt='' />
+        <h2 className={css.username}>{username}</h2>
+      </div>
+      <div className={css.listContainer}>
+        <SellerInfoSingle title='Phone number' text={phone} />
+        <SellerInfoSingle title='Email' text={email} />
+        <SellerInfoSingle title='City' text={city} />
+      </div>
     </div>
   );
 }

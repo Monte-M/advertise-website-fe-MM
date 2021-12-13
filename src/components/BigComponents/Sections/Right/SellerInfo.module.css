@@ -19,3 +19,51 @@
 .username {
   color: #fcaf01;
 }
+
+@media (max-width: 1200px) {
+  .listContainer {
+    display: flex;
+  }
+
+  .userInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 800px) {
+  .listContainer {
+    display: flex;
+  }
+
+  .container {
+    min-width: 100%;
+  }
+
+  .userInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 500px) {
+  .listContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container {
+    min-width: 100%;
+  }
+
+  .userInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}

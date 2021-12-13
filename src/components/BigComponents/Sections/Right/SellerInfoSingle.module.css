@@ -6,6 +6,10 @@
   width: 100%;
 }
 
+.container:last-child {
+  border-bottom: none;
+}
+
 .iconContainer {
   display: flex;
   justify-content: space-between;
@@ -27,4 +31,30 @@
 .contact {
   margin: 5px 0 20px 20px;
   color: #1aa78e;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    border-right: 1px solid #bbbbbb;
+    padding: 0 10px;
+    border-bottom: none;
+  }
+
+  .container:last-child {
+    border-right: none;
+  }
+
+  .userInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    border-bottom: 1px solid #bbbbbb;
+    padding: 0 10px;
+  }
 }

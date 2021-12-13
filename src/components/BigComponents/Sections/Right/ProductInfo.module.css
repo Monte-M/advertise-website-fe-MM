@@ -8,6 +8,20 @@
 }
 
 .container h2 {
-  margin-left: 20px;
-  margin-top: 60px;
+  margin: 60px 0 20px 20px;
+}
+
+@media (max-width: 1200px) {
+}
+
+@media (max-width: 800px) {
+  .container {
+    min-width: 100%;
+  }
+}
+
+@media (max-width: 450px) {
+  .containerLeft {
+    width: 50%;
+  }
 }

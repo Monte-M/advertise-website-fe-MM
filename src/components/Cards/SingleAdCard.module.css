@@ -4,23 +4,26 @@
   box-shadow: 1px 1px 3px gray;
   cursor: pointer;
   margin: 15px;
+  background-color: #fff;
 }
 
 .imgContainer {
   display: flex;
   justify-content: center;
-  background-color: rgb(226, 226, 226);
-  padding: 20px;
+  background-color: #fff;
+  height: 220px;
+  width: 300px;
   border-radius: 5px;
 }
 
 .container img {
-  height: 180px;
-  width: auto;
+  height: auto;
+  width: 300px;
+  object-fit: cover;
+  border-radius: 5px;
 }
 
 .adContainer {
-  background-color: #fff;
   padding: 20px;
   border-radius: 5px;
 }
@@ -59,10 +62,8 @@
 
 .imgContainer div {
   position: absolute;
+  margin-top: 10px;
   margin-left: 250px;
   color: #fcaf01;
   font-size: 22px;
-}
-
-.imgContainer .active {
 }

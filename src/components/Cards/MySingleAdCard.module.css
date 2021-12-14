@@ -10,13 +10,16 @@
   display: flex;
   justify-content: center;
   background-color: rgb(226, 226, 226);
-  padding: 20px;
+  height: 220px;
+  width: 300px;
   border-radius: 5px;
 }
 
 .container img {
-  height: 180px;
-  width: auto;
+  height: auto;
+  width: 300px;
+  object-fit: cover;
+  border-radius: 5px;
 }
 
 .adContainer {

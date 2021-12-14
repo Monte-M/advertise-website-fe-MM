@@ -52,12 +52,12 @@ const AddItemForm = () => {
     validationSchema: Yup.object({
       user_id: Yup.number().required(),
       category_id: Yup.number().required(),
-      title: Yup.string().min(5).max(25).required(),
+      title: Yup.string().min(5).max(19).required(),
       description: Yup.string().min(10).max(300).required(),
       city: Yup.string().required(),
       price: Yup.number().required(),
       item_condition: Yup.string().required(),
-      // image: Yup.string().url().required(),
+      image: Yup.mixed().required(),
     }),
     onSubmit: (values) => {
       postContactForm(values);
@@ -68,6 +68,7 @@ const AddItemForm = () => {
   async function postContactForm(values) {
     const formData = new FormData();
     formData.append("user_id", values.user_id);
+    formData.append("item_condition", values.item_condition);
     formData.append("category_id", values.category_id);
     formData.append("title", values.title);
     formData.append("description", values.description);
@@ -142,8 +143,7 @@ const AddItemForm = () => {
             error={formik.touched[name] && formik.errors[name]}
           />
         ))}
-        <input
-          // value={formik.values.mainImage}
+        <Input
           onChange={(e) =>
             formik.setFieldValue("image", e.currentTarget.files[0])
           }

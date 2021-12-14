@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { array } from "yup";
 import { useAuthCtx } from "../../store/AuthContext";
 
 import Icon from "../UI/Icons/Icon";
@@ -27,8 +26,8 @@ function SingleAdCard({ item, date }) {
     }
   };
 
-  console.log("favorites", favourites);
-  console.log("item", item.id);
+  // console.log("favorites", favourites);
+  // console.log("item", item.id);
 
   const badDate = new Date(date);
   const goodDate = badDate.toLocaleString("lt-Lt", dateOptions);
@@ -42,7 +41,7 @@ function SingleAdCard({ item, date }) {
             </div>
           )}
 
-          <img src={item.image} alt='' />
+          <img src={`http://localhost:3001/ad-img/` + item.image} alt='' />
         </div>
         <div className={css.adContainer}>
           <h2>{item.title}</h2>

@@ -30,7 +30,7 @@ function MySingleAdCard({ item, date }) {
     <div className={css.container}>
       <Link to={`/single/${item.id}`}>
         <div className={css.imgContainer}>
-          <img src={item.image} alt='' />
+          <img src={`http://localhost:3001/ad-img/` + item.image} alt='' />
         </div>
         <div className={css.adContainer}>
           <h2>{item.title}</h2>

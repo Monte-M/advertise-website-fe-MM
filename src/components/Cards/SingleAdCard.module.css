@@ -56,3 +56,13 @@
   width: 100px;
   border-radius: 5px;
 }
+
+.imgContainer div {
+  position: absolute;
+  margin-left: 250px;
+  color: #fcaf01;
+  font-size: 22px;
+}
+
+.imgContainer .active {
+}

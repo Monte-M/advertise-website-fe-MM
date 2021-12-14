@@ -19,9 +19,9 @@ const formFields = [
 ];
 
 const initInputs = {
-  username: "",
-  email: "@gmail.com",
-  city: "",
+  username: "Monte",
+  email: "mantas@gmail.com",
+  city: "Kaunas",
   phone_number: "+37060685258",
   image:
     "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.logolynx.com%2Fimages%2Flogolynx%2F03%2F039b004617d1ef43cf1769aae45d6ea2.png&f=1&nofb=1",

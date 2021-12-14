@@ -8,26 +8,10 @@ function SingleAdCard({ item, date }) {
   const authCtx = useAuthCtx();
   const loggedIn = authCtx.isLoggedIn;
 
-  const [favourites, setFavourites] = useState([]);
-
   const dateOptions = {
     dateStyle: "medium",
     timeStyle: "medium",
   };
-
-  const addItem = (e) => {
-    e.preventDefault();
-    if (item.id !== favourites[0]?.item) {
-      const newFavourite = {
-        item: item,
-        fav: true,
-      };
-      setFavourites([...favourites, newFavourite]);
-    }
-  };
-
-  // console.log("favorites", favourites);
-  // console.log("item", item.id);
 
   const badDate = new Date(date);
   const goodDate = badDate.toLocaleString("lt-Lt", dateOptions);
@@ -36,7 +20,7 @@ function SingleAdCard({ item, date }) {
       <Link to={`/single/${item.id}`}>
         <div className={css.imgContainer}>
           {loggedIn && (
-            <div onClick={addItem}>
+            <div>
               <Icon icon='fa-heart-o' />
             </div>
           )}

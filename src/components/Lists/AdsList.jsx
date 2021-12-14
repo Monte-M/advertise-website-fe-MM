@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { getFetchData } from "../../utils/fetch";
 import SingleAdCard from "../Cards/SingleAdCard";
+import Pagination from "../UI/Pagination/Pagination";
 import css from "./AdsList.module.css";
 
 function AdsList() {
   const [itemsArr, setItemsArr] = useState([]);
   const [categoriesArr, setCategoriesArr] = useState([]);
   const [catId, setCatId] = useState([]);
+  const [currentItem, setCurrentItem] = useState(1);
+  const [itemsPerPage] = useState(6);
 
   const getItems = async () => {
     const data = await getFetchData("http://localhost:3001/items");
@@ -32,6 +35,17 @@ function AdsList() {
     setCategoriesArr(categoriesData.data);
   };
 
+  // get current items
+  const indexOfLastItem = currentItem * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = itemsArr.slice(indexOfFirstItem, indexOfLastItem);
+
+  // change page
+  const paginate = (pageNumber, e) => {
+    setCurrentItem(pageNumber);
+    console.log(pageNumber);
+  };
+
   return (
     <div className={css.container}>
       <div className={css.categoryList}>
@@ -51,10 +65,15 @@ function AdsList() {
         </select>
       </div>
       <div className={css.adsList}>
-        {itemsArr.map((item) => (
+        {currentItems.map((item) => (
           <SingleAdCard key={item.id} item={item} date={item.post_timestamp} />
         ))}
       </div>
+      <Pagination
+        itemsPerPage={itemsPerPage}
+        totalItems={itemsArr.length}
+        paginate={paginate}
+      />
     </div>
   );
 }

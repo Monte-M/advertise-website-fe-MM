@@ -1,0 +1,9 @@
+.pageContainer {
+  display: flex;
+}
+
+.pageContainer h6 {
+  cursor: pointer;
+  margin: 10px;
+  font-size: 14px;
+}

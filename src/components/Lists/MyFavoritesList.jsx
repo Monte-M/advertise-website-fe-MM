@@ -12,11 +12,13 @@ function MyFavoritesList() {
   const [itemsArr, setItemsArr] = useState([]);
   const getItems = async () => {
     const data = await getAuthenticatedFetchData(
-      `http://localhost:3001/items/user-items/${userId}`,
+      `http://localhost:3001/favorites/${userId}`,
       token
     );
     setItemsArr(data.data);
   };
+
+  console.log(itemsArr);
 
   useEffect(() => {
     getItems();
@@ -27,7 +29,7 @@ function MyFavoritesList() {
     <div className={css.container}>
       {itemsArr.map((item) => (
         <MyFavoritesSingleAdCard
-          key={item.id}
+          key={item.favorite_id}
           item={item}
           date={item.post_timestamp}
         />

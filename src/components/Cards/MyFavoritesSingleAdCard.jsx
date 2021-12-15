@@ -9,12 +9,14 @@ function MyFavoritesSingleAdCard({ item, date }) {
     timeStyle: "medium",
   };
 
+  console.log(item);
+
   const badDate = new Date(date);
   const goodDate = badDate.toLocaleString("lt-Lt", dateOptions);
 
   return (
     <div className={css.container}>
-      <Link to={`/single/${item.id}`}>
+      <Link to={`/single/${item.item_id}`}>
         <div className={css.imgContainer}>
           <img src={`http://localhost:3001/ad-img/` + item.image} alt='' />
         </div>

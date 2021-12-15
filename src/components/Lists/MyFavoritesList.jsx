@@ -10,7 +10,7 @@ function MyFavoritesList() {
   const token = authCtx.token;
 
   const [itemsArr, setItemsArr] = useState([]);
-  const getItems = async () => {
+  const getFavorites = async () => {
     const data = await getAuthenticatedFetchData(
       `http://localhost:3001/favorites/${userId}`,
       token
@@ -18,10 +18,8 @@ function MyFavoritesList() {
     setItemsArr(data.data);
   };
 
-  console.log(itemsArr);
-
   useEffect(() => {
-    getItems();
+    getFavorites();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

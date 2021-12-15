@@ -42,7 +42,6 @@ const LoginForm = () => {
 
   async function postContactForm(values) {
     const data = await postFetch("http://localhost:3001/users/login", values);
-    console.log(data);
 
     if (data.error) {
       setResponse(data.error);

@@ -16,6 +16,10 @@
   border-radius: 5px;
 }
 
+.categoryList div {
+  display: flex;
+}
+
 .categoryList h2 {
   margin-right: 10px;
 }
@@ -35,4 +39,16 @@
 
 .highlight {
   font-weight: bold;
+}
+
+@media (max-width: 800px) {
+  .categoryList {
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .categoryList div {
+    margin: 10px;
+  }
 }

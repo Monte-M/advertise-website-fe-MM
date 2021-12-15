@@ -59,7 +59,6 @@ const AddItemForm = () => {
     }),
     onSubmit: (values) => {
       postContactForm(values);
-      console.log(values);
     },
   });
 
@@ -79,7 +78,6 @@ const AddItemForm = () => {
     formData.append("city", values.city);
     formData.append("price", values.price);
     formData.append("image", values.image);
-    console.log(formData.get("image"));
 
     const resp = await fetch(`http://localhost:3001/items`, {
       method: "POST",

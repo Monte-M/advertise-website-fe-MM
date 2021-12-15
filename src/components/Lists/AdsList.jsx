@@ -7,6 +7,7 @@ import css from "./AdsList.module.css";
 function AdsList() {
   const [itemsArr, setItemsArr] = useState([]);
   const [categoriesArr, setCategoriesArr] = useState([]);
+
   const [sortType, setSortType] = useState("");
   const [catId, setCatId] = useState([]);
   const [currentItem, setCurrentItem] = useState(1);
@@ -44,7 +45,6 @@ function AdsList() {
   // change page
   const paginate = (pageNumber) => {
     setCurrentItem(pageNumber);
-    console.log(pageNumber);
   };
 
   useEffect(() => {
@@ -66,26 +66,31 @@ function AdsList() {
   return (
     <div className={css.container}>
       <div className={css.categoryList}>
-        <h2>Categories: </h2>
-        <select
-          className={css.select}
-          onChange={(e) => setCatId(e.target.value)}
-        >
-          <option onClick={getItems} className={css.highlight}>
-            Show All
-          </option>
-          {categoriesArr.map(({ id, category }) => (
-            <option key={id} value={id} onClick={getSortedItems}>
-              {category}
+        <div>
+          <h2>Categories: </h2>
+          <select
+            className={css.select}
+            onChange={(e) => setCatId(e.target.value)}
+          >
+            <option onClick={getItems} className={css.highlight}>
+              Show All
             </option>
-          ))}
-        </select>
-        <h2>Sort by: </h2>
-        <select onChange={(e) => setSortType(e.target.value)}>
-          <option value='price'>Price</option>
-          <option value='city'>City</option>
-        </select>
+            {categoriesArr.map(({ id, category }) => (
+              <option key={id} value={id} onClick={getSortedItems}>
+                {category}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <h2>Sort by: </h2>
+          <select onChange={(e) => setSortType(e.target.value)}>
+            <option value='price'>Price</option>
+            <option value='city'>City</option>
+          </select>
+        </div>
       </div>
+
       <div className={css.adsList}>
         {currentItems.map((item) => (
           <SingleAdCard key={item.id} item={item} date={item.post_timestamp} />

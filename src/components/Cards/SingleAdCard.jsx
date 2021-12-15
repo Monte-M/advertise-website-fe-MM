@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { useAuthCtx } from "../../store/AuthContext";
-import { getFetchData, postFetch } from "../../utils/fetch";
+import { postFetch } from "../../utils/fetch";
 
 import Icon from "../UI/Icons/Icon";
 import css from "./SingleAdCard.module.css";
 function SingleAdCard({ item, date }) {
-  const [favoritesArr, setFavoritesArr] = useState([]);
   const authCtx = useAuthCtx();
   const loggedIn = authCtx.isLoggedIn;
   const user_id = authCtx.id;
@@ -19,22 +19,15 @@ function SingleAdCard({ item, date }) {
   const handleFavorites = async (e) => {
     e.preventDefault();
     const dataToSend = { user_id: user_id, favorite_item: item.id };
-    await postFetch("http://localhost:3001/favorites", dataToSend);
+    const data = await postFetch("http://localhost:3001/favorites", dataToSend);
+    console.log(data);
+    if (data.msg === "favorite added") {
+      toast.success("Successfully added to favorites");
+    }
+    if (data.msg === "favorite removed") {
+      toast.success("Successfully removed from favorites");
+    }
   };
-
-  const getFavorites = async () => {
-    const favoritesData = await getFetchData(
-      `http://localhost:3001/favorites/${user_id}`
-    );
-    setFavoritesArr(favoritesData);
-  };
-
-  console.log(favoritesArr);
-
-  useEffect(() => {
-    getFavorites();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const badDate = new Date(date);
   const goodDate = badDate.toLocaleString("lt-Lt", dateOptions);

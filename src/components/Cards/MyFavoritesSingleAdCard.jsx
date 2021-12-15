@@ -1,23 +1,44 @@
 import React from "react";
+import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { useAuthCtx } from "../../store/AuthContext";
+import { postFetch } from "../../utils/fetch";
 import Icon from "../UI/Icons/Icon";
-import css from "./MySingleAdCard.module.css";
+import css from "./MyFavoritesSingleAdCard.module.css";
 
 function MyFavoritesSingleAdCard({ item, date }) {
+  const authCtx = useAuthCtx();
+  const user_id = authCtx.id;
   const dateOptions = {
     dateStyle: "medium",
     timeStyle: "medium",
   };
 
-  console.log(item);
+  console.log("item", item);
 
   const badDate = new Date(date);
   const goodDate = badDate.toLocaleString("lt-Lt", dateOptions);
+
+  const handleFavorites = async (e) => {
+    e.preventDefault();
+    const dataToSend = { user_id: user_id, favorite_item: item.item_id };
+    const data = await postFetch("http://localhost:3001/favorites", dataToSend);
+    if (data.msg === "favorite added") {
+      toast.success("Successfully added to favorites");
+    }
+    if (data.msg === "favorite removed") {
+      toast.success("Successfully removed from favorites");
+    }
+  };
 
   return (
     <div className={css.container}>
       <Link to={`/single/${item.item_id}`}>
         <div className={css.imgContainer}>
+          <div onClick={handleFavorites}>
+            <Icon icon='fa-heart' />
+          </div>
+
           <img src={`http://localhost:3001/ad-img/` + item.image} alt='' />
         </div>
         <div className={css.adContainer}>
@@ -44,9 +65,7 @@ function MyFavoritesSingleAdCard({ item, date }) {
             <h4>{item.category}</h4>
           </div>
 
-          <div className={css.lowerSection}>
-            <h2 className={css.highlight}>$ {item.price}</h2>
-          </div>
+          <h2 className={css.highlight}>$ {item.price}</h2>
         </div>
       </Link>
     </div>

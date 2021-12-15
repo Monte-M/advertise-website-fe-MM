@@ -7,13 +7,21 @@
   border-radius: 5px;
 }
 
+.userInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .container h2 {
   margin: 10px 20px;
 }
 
 .container img {
-  width: 100%;
+  width: auto;
   height: 150px;
+  border-radius: 5px;
 }
 
 .username {

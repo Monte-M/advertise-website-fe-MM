@@ -2,6 +2,7 @@ import React from "react";
 import css from "./MiddleSection.module.css";
 
 function MiddleSection({ image, description }) {
+  console.log(image);
   return (
     <div>
       <div className={css.container}>

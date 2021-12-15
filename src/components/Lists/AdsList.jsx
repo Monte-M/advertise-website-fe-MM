@@ -4,9 +4,16 @@ import SingleAdCard from "../Cards/SingleAdCard";
 import Pagination from "../UI/Pagination/Pagination";
 import css from "./AdsList.module.css";
 
+const sortyByArr = [
+  { id: 1, sort: "price" },
+  { id: 2, sort: "date" },
+  { id: 3, sort: "city" },
+];
+
 function AdsList() {
   const [itemsArr, setItemsArr] = useState([]);
   const [categoriesArr, setCategoriesArr] = useState([]);
+  const [sortType, setSortType] = useState("");
   const [catId, setCatId] = useState([]);
   const [currentItem, setCurrentItem] = useState(1);
   const [itemsPerPage] = useState(6);
@@ -41,10 +48,25 @@ function AdsList() {
   const currentItems = itemsArr.slice(indexOfFirstItem, indexOfLastItem);
 
   // change page
-  const paginate = (pageNumber, e) => {
+  const paginate = (pageNumber) => {
     setCurrentItem(pageNumber);
     console.log(pageNumber);
   };
+
+  useEffect(() => {
+    const sortArray = (type) => {
+      const types = {
+        price: "price",
+        city: "city",
+      };
+      const sortProperty = types[type];
+      const sorted = [...itemsArr].sort((a, b) =>
+        a[sortProperty] < b[sortProperty] ? -1 : 1
+      );
+      setItemsArr(sorted);
+    };
+    sortArray(sortType);
+  }, [sortType]);
 
   return (
     <div className={css.container}>
@@ -62,6 +84,11 @@ function AdsList() {
               {category}
             </option>
           ))}
+        </select>
+        <h2>Sort by: </h2>
+        <select onChange={(e) => setSortType(e.target.value)}>
+          <option value='price'>Price</option>
+          <option value='city'>City</option>
         </select>
       </div>
       <div className={css.adsList}>

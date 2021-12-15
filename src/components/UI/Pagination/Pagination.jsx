@@ -12,7 +12,9 @@ const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
     <nav>
       <div className={css.pageContainer}>
         {pageNumbers.map((number) => (
-          <h6 onClick={() => paginate(number)}>{number}</h6>
+          <h6 key={number} onClick={() => paginate(number)}>
+            {number}
+          </h6>
         ))}
       </div>
     </nav>

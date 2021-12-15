@@ -22,6 +22,8 @@
 
 .categoryList select {
   height: 30px;
+  width: 120px;
+  margin-right: 20px;
 }
 
 .adsList {

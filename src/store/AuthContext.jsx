@@ -14,6 +14,12 @@ const AuthProvider = (props) => {
   const [id, setId] = useState(sessionStorage.getItem("userId"));
   const [token, setToken] = useState(sessionStorage.getItem("userToken"));
 
+  const autoLogout = () => {
+    setTimeout(() => {
+      logout();
+    }, 3500000);
+  };
+
   const login = (email, token, id) => {
     setEmail(email);
     setId(id);
@@ -22,6 +28,8 @@ const AuthProvider = (props) => {
     sessionStorage.setItem("userId", id);
     sessionStorage.setItem("userToken", token);
     toast.success(email + " logged in");
+
+    autoLogout();
   };
 
   const logout = () => {

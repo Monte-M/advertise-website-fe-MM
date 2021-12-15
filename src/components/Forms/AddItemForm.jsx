@@ -43,6 +43,9 @@ const AddItemForm = () => {
 
   useEffect(() => {
     getCategories();
+    return () => {
+      setCategoriesArr([]);
+    };
   }, []);
 
   const formik = useFormik({

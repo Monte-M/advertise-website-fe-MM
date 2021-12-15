@@ -20,6 +20,9 @@ function MyAdsList() {
 
   useEffect(() => {
     getItems();
+    return () => {
+      setItemsArr([]);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

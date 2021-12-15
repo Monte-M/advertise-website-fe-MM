@@ -2,13 +2,14 @@ import React from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { useAuthCtx } from "../../store/AuthContext";
-import { postFetch } from "../../utils/fetch";
+import { postAuthenticatedFetch } from "../../utils/fetch";
 import Icon from "../UI/Icons/Icon";
 import css from "./MyFavoritesSingleAdCard.module.css";
 
 function MyFavoritesSingleAdCard({ item, date }) {
   const authCtx = useAuthCtx();
   const user_id = authCtx.id;
+  const token = authCtx.token;
   const dateOptions = {
     dateStyle: "medium",
     timeStyle: "medium",
@@ -22,7 +23,11 @@ function MyFavoritesSingleAdCard({ item, date }) {
   const handleFavorites = async (e) => {
     e.preventDefault();
     const dataToSend = { user_id: user_id, favorite_item: item.item_id };
-    const data = await postFetch("http://localhost:3001/favorites", dataToSend);
+    const data = await postAuthenticatedFetch(
+      "http://localhost:3001/favorites",
+      dataToSend,
+      token
+    );
     if (data.msg === "favorite added") {
       toast.success("Successfully added to favorites");
     }

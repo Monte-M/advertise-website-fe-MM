@@ -18,11 +18,6 @@ function AdsList() {
     setItemsArr(data.data);
   };
 
-  useEffect(() => {
-    getItems();
-    getCategories();
-  }, []);
-
   const getSortedItems = async () => {
     const sortedData = await getFetchData(
       `http://localhost:3001/categories/${catId}`
@@ -36,6 +31,15 @@ function AdsList() {
     );
     setCategoriesArr(categoriesData.data);
   };
+
+  useEffect(() => {
+    getItems();
+    getCategories();
+    return () => {
+      setItemsArr([]);
+      setCategoriesArr([]);
+    };
+  }, []);
 
   // get current items
   const indexOfLastItem = currentItem * itemsPerPage;

@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import toast from "react-hot-toast";
 import Button from "./../UI/Buttons/Button";
 import { postFetch } from "../../utils/fetch";
-import { useHistory } from "react-router";
+
 import css from "./LoginForm.module.css";
 
 const formFields = [
@@ -30,12 +30,6 @@ const initInputs = {
 };
 const RegisterForm = () => {
   const [response, setResponse] = useState([]);
-  const history = useHistory();
-
-  useEffect(() => {
-    const errorObj = responceToErrors(response);
-    formik.setErrors(errorObj);
-  }, [response]);
 
   const formik = useFormik({
     initialValues: { ...initInputs },
@@ -54,6 +48,12 @@ const RegisterForm = () => {
       postContactForm(values);
     },
   });
+
+  const formikErrors = formik.setErrors;
+  useEffect(() => {
+    const errorObj = responceToErrors(response);
+    formikErrors(errorObj);
+  }, [response, formikErrors]);
 
   async function postContactForm(values) {
     const data = await postFetch(

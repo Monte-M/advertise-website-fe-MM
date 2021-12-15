@@ -2,11 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Icon from "../UI/Icons/Icon";
 import css from "./MySingleAdCard.module.css";
-import Button from "../UI/Buttons/Button";
-import { deleteFetch } from "../../utils/fetch";
-import { useAuthCtx } from "../../store/AuthContext";
 
-function MySingleAdCard({ item, date }) {
+function MyFavoritesSingleAdCard({ item, date }) {
   const dateOptions = {
     dateStyle: "medium",
     timeStyle: "medium",
@@ -14,14 +11,6 @@ function MySingleAdCard({ item, date }) {
 
   const badDate = new Date(date);
   const goodDate = badDate.toLocaleString("lt-Lt", dateOptions);
-  const authCtx = useAuthCtx();
-  const token = authCtx.token;
-
-  const handleDelete = async (e) => {
-    e.preventDefault();
-    await deleteFetch(`http://localhost:3001/items/delete/${item.id}`, token);
-    window.location.reload();
-  };
 
   return (
     <div className={css.container}>
@@ -55,7 +44,6 @@ function MySingleAdCard({ item, date }) {
 
           <div className={css.lowerSection}>
             <h2 className={css.highlight}>$ {item.price}</h2>
-            <Button onClick={handleDelete}>Delete</Button>
           </div>
         </div>
       </Link>
@@ -63,4 +51,4 @@ function MySingleAdCard({ item, date }) {
   );
 }
 
-export default MySingleAdCard;
+export default MyFavoritesSingleAdCard;

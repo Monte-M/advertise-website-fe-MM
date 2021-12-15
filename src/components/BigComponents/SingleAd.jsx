@@ -17,6 +17,7 @@ function SingleAd() {
 
   useEffect(() => {
     getSinglePost();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -28,10 +29,12 @@ function SingleAd() {
           city={singleAd[0]?.city}
           date={singleAd[0]?.post_timestamp}
         />
-        <MiddleSection
-          image={singleAd[0]?.image}
-          description={singleAd[0]?.description}
-        />
+        {singleAd[0] && (
+          <MiddleSection
+            image={singleAd[0]?.image}
+            description={singleAd[0]?.description}
+          />
+        )}
       </div>
       <div className={css.rightContainer}>
         <ProductInfo

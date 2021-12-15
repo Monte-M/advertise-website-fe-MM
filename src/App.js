@@ -7,6 +7,7 @@ import AddItemPage from "./pages/AddItemPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import MyAdsPage from "./pages/MyAdsPage";
+import MyFavoritesPage from "./pages/MyFavoritesPage";
 import RegisterPage from "./pages/RegisterPage";
 import SingleAdPage from "./pages/SingleAdPage";
 import { useAuthCtx } from "./store/AuthContext";
@@ -36,6 +37,11 @@ function App() {
         {loggedIn && (
           <Route path='/myAds'>
             <MyAdsPage />
+          </Route>
+        )}
+        {loggedIn && (
+          <Route path='/favorites'>
+            <MyFavoritesPage />
           </Route>
         )}
         <Route exact path='/'>

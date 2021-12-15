@@ -23,11 +23,6 @@ const LoginForm = () => {
   const authCtx = useAuthCtx();
   const history = useHistory();
 
-  useEffect(() => {
-    const errorObj = responceToErrors(response);
-    formik.setErrors(errorObj);
-  }, [response]);
-
   const formik = useFormik({
     initialValues: { ...initInputs },
     validationSchema: Yup.object({
@@ -38,6 +33,12 @@ const LoginForm = () => {
       postContactForm(values);
     },
   });
+
+  const formikErrors = formik.setErrors;
+  useEffect(() => {
+    const errorObj = responceToErrors(response);
+    formikErrors(errorObj);
+  }, [response, formikErrors]);
 
   async function postContactForm(values) {
     const data = await postFetch("http://localhost:3001/users/login", values);

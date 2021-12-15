@@ -4,12 +4,6 @@ import SingleAdCard from "../Cards/SingleAdCard";
 import Pagination from "../UI/Pagination/Pagination";
 import css from "./AdsList.module.css";
 
-const sortyByArr = [
-  { id: 1, sort: "price" },
-  { id: 2, sort: "date" },
-  { id: 3, sort: "city" },
-];
-
 function AdsList() {
   const [itemsArr, setItemsArr] = useState([]);
   const [categoriesArr, setCategoriesArr] = useState([]);
@@ -66,6 +60,7 @@ function AdsList() {
       setItemsArr(sorted);
     };
     sortArray(sortType);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortType]);
 
   return (

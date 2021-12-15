@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useAuthCtx } from "../../store/AuthContext";
 import AdButton from "../UI/Buttons/AdButton";
@@ -43,6 +43,11 @@ function Navbar() {
         {loggedIn && (
           <NavLink activeClassName='active' to='/myAds'>
             My Ads
+          </NavLink>
+        )}
+        {loggedIn && (
+          <NavLink activeClassName='active' to='/favorites'>
+            Favorites
           </NavLink>
         )}
         {loggedIn ? (

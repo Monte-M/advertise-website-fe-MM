@@ -25,7 +25,6 @@ function SingleAdCard({ item, date }) {
       dataToSend,
       token
     );
-    console.log(data);
     if (data.msg === "favorite added") {
       toast.success("Successfully added to favorites");
     }

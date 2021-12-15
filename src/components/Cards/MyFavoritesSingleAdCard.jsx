@@ -15,8 +15,6 @@ function MyFavoritesSingleAdCard({ item, date }) {
     timeStyle: "medium",
   };
 
-  console.log("item", item);
-
   const badDate = new Date(date);
   const goodDate = badDate.toLocaleString("lt-Lt", dateOptions);
 

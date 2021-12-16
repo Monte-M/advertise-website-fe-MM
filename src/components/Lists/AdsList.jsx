@@ -4,6 +4,8 @@ import SingleAdCard from "../Cards/SingleAdCard";
 import Pagination from "../UI/Pagination/Pagination";
 import css from "./AdsList.module.css";
 
+const beURL = process.env.REACT_APP_BE_API;
+
 function AdsList() {
   const [itemsArr, setItemsArr] = useState([]);
   const [categoriesArr, setCategoriesArr] = useState([]);
@@ -14,21 +16,17 @@ function AdsList() {
   const [itemsPerPage] = useState(6);
 
   const getItems = async () => {
-    const data = await getFetchData("http://localhost:3001/items");
+    const data = await getFetchData(`${beURL}/items`);
     setItemsArr(data.data);
   };
 
   const getSortedItems = async () => {
-    const sortedData = await getFetchData(
-      `http://localhost:3001/categories/${catId}`
-    );
+    const sortedData = await getFetchData(`${beURL}/categories/${catId}`);
     setItemsArr(sortedData.data);
   };
 
   const getCategories = async () => {
-    const categoriesData = await getFetchData(
-      "http://localhost:3001/categories"
-    );
+    const categoriesData = await getFetchData(`${beURL}/categories`);
     setCategoriesArr(categoriesData.data);
   };
 

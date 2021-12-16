@@ -6,6 +6,8 @@ import { postAuthenticatedFetch } from "../../utils/fetch";
 import Icon from "../UI/Icons/Icon";
 import css from "./MyFavoritesSingleAdCard.module.css";
 
+const beURL = process.env.REACT_APP_BE_API;
+
 function MyFavoritesSingleAdCard({ item, date }) {
   const authCtx = useAuthCtx();
   const user_id = authCtx.id;
@@ -22,7 +24,7 @@ function MyFavoritesSingleAdCard({ item, date }) {
     e.preventDefault();
     const dataToSend = { user_id: user_id, favorite_item: item.item_id };
     const data = await postAuthenticatedFetch(
-      "http://localhost:3001/favorites",
+      `${beURL}/favorites`,
       dataToSend,
       token
     );
@@ -42,7 +44,7 @@ function MyFavoritesSingleAdCard({ item, date }) {
             <Icon icon='fa-heart' />
           </div>
 
-          <img src={`http://localhost:3001/ad-img/` + item.image} alt='' />
+          <img src={`${beURL}/ad-img/` + item.image} alt='' />
         </div>
         <div className={css.adContainer}>
           <h2>{item.title}</h2>

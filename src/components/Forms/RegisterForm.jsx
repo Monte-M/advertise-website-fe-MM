@@ -5,8 +5,9 @@ import * as Yup from "yup";
 import toast from "react-hot-toast";
 import Button from "./../UI/Buttons/Button";
 import { postFetch } from "../../utils/fetch";
-
 import css from "./LoginForm.module.css";
+
+const beURL = process.env.REACT_APP_BE_API;
 
 const formFields = [
   { name: "username", placeholder: "Username" },
@@ -56,10 +57,7 @@ const RegisterForm = () => {
   }, [response, formikErrors]);
 
   async function postContactForm(values) {
-    const data = await postFetch(
-      "http://localhost:3001/users/register",
-      values
-    );
+    const data = await postFetch(`${beURL}/users/register`, values);
 
     if (data.error) {
       setResponse(data.error);

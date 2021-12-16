@@ -4,6 +4,8 @@ import { getAuthenticatedFetchData } from "../../utils/fetch";
 import MySingleAdCard from "../Cards/MySingleAdCard";
 import css from "./MyAdsList.module.css";
 
+const beURL = process.env.REACT_APP_BE_API;
+
 function MyAdsList() {
   const authCtx = useAuthCtx();
   const userId = authCtx.id;
@@ -12,7 +14,7 @@ function MyAdsList() {
   const [itemsArr, setItemsArr] = useState([]);
   const getItems = async () => {
     const data = await getAuthenticatedFetchData(
-      `http://localhost:3001/items/user-items/${userId}`,
+      `${beURL}/items/user-items/${userId}`,
       token
     );
     setItemsArr(data.data);

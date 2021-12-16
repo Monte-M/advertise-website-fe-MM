@@ -1,11 +1,13 @@
 import React from "react";
 import css from "./MiddleSection.module.css";
 
+const beURL = process.env.REACT_APP_BE_API;
+
 function MiddleSection({ image, description }) {
   return (
     <div>
       <div className={css.container}>
-        <img src={`http://localhost:3001/ad-img/` + image} alt='' />
+        <img src={`${beURL}/` + image} alt='' />
       </div>
       <div className={css.description}>
         <h2>Description:</h2>

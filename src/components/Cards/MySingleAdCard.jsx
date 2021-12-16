@@ -6,6 +6,8 @@ import Button from "../UI/Buttons/Button";
 import { deleteFetch } from "../../utils/fetch";
 import { useAuthCtx } from "../../store/AuthContext";
 
+const beURL = process.env.REACT_APP_BE_API;
+
 function MySingleAdCard({ item, date }) {
   const dateOptions = {
     dateStyle: "medium",
@@ -19,7 +21,7 @@ function MySingleAdCard({ item, date }) {
 
   const handleDelete = async (e) => {
     e.preventDefault();
-    await deleteFetch(`http://localhost:3001/items/delete/${item.id}`, token);
+    await deleteFetch(`${beURL}/items/delete/${item.id}`, token);
     window.location.reload();
   };
 
@@ -27,7 +29,7 @@ function MySingleAdCard({ item, date }) {
     <div className={css.container}>
       <Link to={`/single/${item.id}`}>
         <div className={css.imgContainer}>
-          <img src={`http://localhost:3001/ad-img/` + item.image} alt='' />
+          <img src={`${beURL}/ad-img/` + item.image} alt='' />
         </div>
         <div className={css.adContainer}>
           <h2>{item.title}</h2>

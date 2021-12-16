@@ -9,6 +9,8 @@ import { useHistory } from "react-router";
 import css from "./LoginForm.module.css";
 import { useAuthCtx } from "../../store/AuthContext";
 
+const beURL = process.env.REACT_APP_BE_API;
+
 const formFields = [
   { name: "email", placeholder: "Email" },
   { name: "password", placeholder: "Password", type: "password" },
@@ -41,7 +43,7 @@ const LoginForm = () => {
   }, [response, formikErrors]);
 
   async function postContactForm(values) {
-    const data = await postFetch("http://localhost:3001/users/login", values);
+    const data = await postFetch(`${beURL}/users/login`, values);
 
     if (data.error) {
       setResponse(data.error);

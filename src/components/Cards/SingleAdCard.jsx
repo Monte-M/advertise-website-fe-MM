@@ -3,9 +3,11 @@ import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { useAuthCtx } from "../../store/AuthContext";
 import { postAuthenticatedFetch } from "../../utils/fetch";
-
 import Icon from "../UI/Icons/Icon";
 import css from "./SingleAdCard.module.css";
+
+const beURL = process.env.REACT_APP_BE_API;
+
 function SingleAdCard({ item, date }) {
   const authCtx = useAuthCtx();
   const loggedIn = authCtx.isLoggedIn;
@@ -21,7 +23,7 @@ function SingleAdCard({ item, date }) {
     e.preventDefault();
     const dataToSend = { user_id: user_id, favorite_item: item.id };
     const data = await postAuthenticatedFetch(
-      "http://localhost:3001/favorites",
+      `${beURL}/favorites`,
       dataToSend,
       token
     );
@@ -45,7 +47,7 @@ function SingleAdCard({ item, date }) {
             </div>
           )}
 
-          <img src={`http://localhost:3001/ad-img/` + item.image} alt='' />
+          <img src={`${beURL}/ad-img/` + item.image} alt='' />
         </div>
         <div className={css.adContainer}>
           <h2>{item.title}</h2>

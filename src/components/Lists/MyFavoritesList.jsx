@@ -4,6 +4,8 @@ import { getAuthenticatedFetchData } from "../../utils/fetch";
 import MyFavoritesSingleAdCard from "../Cards/MyFavoritesSingleAdCard";
 import css from "./MyAdsList.module.css";
 
+const beURL = process.env.REACT_APP_BE_API;
+
 function MyFavoritesList() {
   const authCtx = useAuthCtx();
   const userId = authCtx.id;
@@ -12,7 +14,7 @@ function MyFavoritesList() {
   const [itemsArr, setItemsArr] = useState([]);
   const getFavorites = async () => {
     const data = await getAuthenticatedFetchData(
-      `http://localhost:3001/favorites/${userId}`,
+      `${beURL}/favorites/${userId}`,
       token
     );
     setItemsArr(data.data);

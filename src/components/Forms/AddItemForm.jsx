@@ -9,6 +9,8 @@ import { useHistory } from "react-router";
 import css from "./AddItemForm.module.css";
 import { useAuthCtx } from "../../store/AuthContext";
 
+const beURL = process.env.REACT_APP_BE_API;
+
 const formFields = [
   { name: "user_id", placeholder: "User ID", type: "hidden" },
   { name: "title", placeholder: "Title" },
@@ -37,7 +39,7 @@ const AddItemForm = () => {
   };
 
   const getCategories = async () => {
-    const data = await getFetchData("http://localhost:3001/categories");
+    const data = await getFetchData(`${beURL}/categories`);
     setCategoriesArr(data.data);
   };
 
@@ -82,7 +84,7 @@ const AddItemForm = () => {
     formData.append("price", values.price);
     formData.append("image", values.image);
 
-    const resp = await fetch(`http://localhost:3001/items`, {
+    const resp = await fetch(`${beURL}/items`, {
       method: "POST",
       headers: {
         // "Content-Type": "application/json",

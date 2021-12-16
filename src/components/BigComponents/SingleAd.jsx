@@ -7,11 +7,15 @@ import ProductInfo from "./Sections/Right/ProductInfo";
 import { getFetchData } from "../../utils/fetch";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
+const beURL = process.env.REACT_APP_BE_API;
+
+console.log(beURL);
+
 function SingleAd() {
   const { id } = useParams();
   const [singleAd, setSingleAd] = useState([]);
   const getSinglePost = async () => {
-    const data = await getFetchData(`http://localhost:3001/items/${id}`);
+    const data = await getFetchData(`${beURL}/items/${id}`);
     setSingleAd(data.data);
   };
 

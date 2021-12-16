@@ -6,6 +6,8 @@ import css from "./AdsList.module.css";
 
 const beURL = process.env.REACT_APP_BE_API;
 
+console.log(beURL);
+
 function AdsList() {
   const [itemsArr, setItemsArr] = useState([]);
   const [categoriesArr, setCategoriesArr] = useState([]);

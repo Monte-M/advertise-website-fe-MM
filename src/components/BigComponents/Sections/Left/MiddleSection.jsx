@@ -7,7 +7,7 @@ function MiddleSection({ image, description }) {
   return (
     <div>
       <div className={css.container}>
-        <img src={`${beURL}/` + image} alt='' />
+        <img src={`${beURL}/ad-img/` + image} alt='' />
       </div>
       <div className={css.description}>
         <h2>Description:</h2>

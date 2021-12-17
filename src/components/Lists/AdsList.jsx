@@ -40,6 +40,7 @@ function AdsList() {
       setItemsArr([]);
       setCategoriesArr([]);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // get current items

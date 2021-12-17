@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuthCtx } from "../../store/AuthContext";
 import { getAuthenticatedFetchData } from "../../utils/fetch";
 import MyFavoritesSingleAdCard from "../Cards/MyFavoritesSingleAdCard";
-import css from "./MyAdsList.module.css";
+import css from "./MyFavoritesList.module.css";
 
 const beURL = process.env.REACT_APP_BE_API;
 

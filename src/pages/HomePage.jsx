@@ -1,5 +1,4 @@
 import React from "react";
-
 import AdsList from "../components/Lists/AdsList";
 import css from "./styles/HomePage.module.css";
 

@@ -1,5 +1,4 @@
 import React from "react";
-
 import MyFavoritesList from "../components/Lists/MyFavoritesList";
 import css from "./styles/MyAdsPage.module.css";
 

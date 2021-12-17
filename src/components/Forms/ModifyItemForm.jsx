@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import Button from "../UI/Buttons/Button";
 import { getFetchData } from "../../utils/fetch";
 import { useHistory } from "react-router";
-import css from "./AddItemForm.module.css";
+import css from "./ModifyItemForm.module.css";
 import { useAuthCtx } from "../../store/AuthContext";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
@@ -24,11 +24,9 @@ const ModifyItem = () => {
   const { id } = useParams();
   const [singleAd, setSingleAd] = useState([]);
   const [response, setResponse] = useState([]);
-  const [categoriesArr, setCategoriesArr] = useState([]);
   const history = useHistory();
   const authCtx = useAuthCtx();
   const token = authCtx.token;
-  const user_id = authCtx.id;
 
   const getSinglePost = async () => {
     const data = await getFetchData(`${beURL}/items/single/${id}`);
@@ -66,18 +64,6 @@ const ModifyItem = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const getCategories = async () => {
-    const data = await getFetchData(`${beURL}/categories`);
-    setCategoriesArr(data.data);
-  };
-
-  useEffect(() => {
-    getCategories();
-    return () => {
-      setCategoriesArr([]);
-    };
-  }, []);
-
   const formikErrors = formik.setErrors;
   useEffect(() => {
     const errorObj = responceToErrors(response);
@@ -85,13 +71,6 @@ const ModifyItem = () => {
   }, [response, formikErrors]);
 
   async function postContactForm(values) {
-    const formData = new FormData();
-    formData.append("title", values.title);
-    formData.append("description", values.description);
-    formData.append("city", values.city);
-    formData.append("price", values.price);
-    formData.append("id", values.id);
-
     const resp = await fetch(`${beURL}/items/update`, {
       method: "POST",
       headers: {
@@ -113,8 +92,6 @@ const ModifyItem = () => {
       }, 1000);
     }
   }
-
-  console.log("id", id);
 
   return (
     <div className={css.container}>

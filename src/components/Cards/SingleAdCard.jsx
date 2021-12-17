@@ -20,8 +20,6 @@ function SingleAdCard({ item, date }) {
     timeStyle: "medium",
   };
 
-  console.log("item-id", item.id);
-
   const handleFavorites = async (e) => {
     e.preventDefault();
     const dataToSend = { user_id: user_id, favorite_item: item.id };
@@ -63,24 +61,20 @@ function SingleAdCard({ item, date }) {
             <div>
               <Icon icon='fa-clock-o' />
             </div>
-
             <h4>{goodDate}</h4>
           </div>
           <div className={css.singleTitle}>
             <div>
               <Icon icon='fa-map-marker' />
             </div>
-
             <h4>{item.city}</h4>
           </div>
           <div className={css.singleTitle}>
             <div>
               <Icon icon='fa-tasks ' />
             </div>
-
             <h4>{item.category}</h4>
           </div>
-
           <h2 className={css.highlight}>$ {item.price}</h2>
         </div>
       </Link>

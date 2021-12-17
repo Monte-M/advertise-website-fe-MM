@@ -30,10 +30,10 @@ const AddItemForm = () => {
   const initInputs = {
     user_id: user_id,
     category_id: "1",
-    title: "testt",
-    description: "testtesttest",
-    price: "200",
-    city: "Kaunas",
+    title: "",
+    description: "",
+    price: "",
+    city: "",
     item_condition: "New",
     image: "",
   };

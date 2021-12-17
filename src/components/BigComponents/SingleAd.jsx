@@ -25,8 +25,6 @@ function SingleAd() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(singleAd);
-
   return (
     <div className={css.container}>
       <div className={css.containerLeft}>

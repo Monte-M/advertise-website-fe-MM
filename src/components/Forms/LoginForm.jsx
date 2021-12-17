@@ -20,6 +20,7 @@ const initInputs = {
   email: "",
   password: "",
 };
+
 const LoginForm = () => {
   const [response, setResponse] = useState([]);
   const authCtx = useAuthCtx();
@@ -50,7 +51,6 @@ const LoginForm = () => {
       toast.error("Please check the form");
     }
     if (data.msg) {
-      // history.push("/orders/2");
       const token = data.loggedInUser.token;
       const id = data.loggedInUser.id;
 

@@ -31,7 +31,7 @@ const ModifyItem = () => {
   const user_id = authCtx.id;
 
   const getSinglePost = async () => {
-    const data = await getFetchData(`${beURL}/items/${id}`);
+    const data = await getFetchData(`${beURL}/items/single/${id}`);
     setSingleAd(data.data);
   };
 
@@ -42,10 +42,6 @@ const ModifyItem = () => {
     price: `${singleAd[0]?.price}`,
     id: id,
   };
-
-  console.log(Number(singleAd[0]?.category_id));
-
-  console.log("initInputs", initInputs);
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -59,7 +55,6 @@ const ModifyItem = () => {
     }),
     onSubmit: (values) => {
       postContactForm(values);
-      console.log("values", values);
     },
   });
 
@@ -75,8 +70,6 @@ const ModifyItem = () => {
     const data = await getFetchData(`${beURL}/categories`);
     setCategoriesArr(data.data);
   };
-
-  console.log(singleAd);
 
   useEffect(() => {
     getCategories();
@@ -120,6 +113,8 @@ const ModifyItem = () => {
       }, 1000);
     }
   }
+
+  console.log("id", id);
 
   return (
     <div className={css.container}>

@@ -13,7 +13,7 @@ function SingleAd() {
   const { id } = useParams();
   const [singleAd, setSingleAd] = useState([]);
   const getSinglePost = async () => {
-    const data = await getFetchData(`${beURL}/items/${id}`);
+    const data = await getFetchData(`${beURL}/items/single/${id}`);
     setSingleAd(data.data);
   };
 
@@ -24,6 +24,8 @@ function SingleAd() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  console.log(singleAd);
 
   return (
     <div className={css.container}>

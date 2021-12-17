@@ -20,6 +20,8 @@ function SingleAdCard({ item, date }) {
     timeStyle: "medium",
   };
 
+  console.log("item-id", item.id);
+
   const handleFavorites = async (e) => {
     e.preventDefault();
     const dataToSend = { user_id: user_id, favorite_item: item.id };

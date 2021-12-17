@@ -18,7 +18,6 @@ function AdsList() {
   const [currentItem, setCurrentItem] = useState(1);
   const [itemsPerPage] = useState(6);
 
-  console.log(itemsArr);
   const getItems = async () => {
     const data = await getFetchData(`${beURL}/items/${user_id || null}`);
     setItemsArr(data.data);

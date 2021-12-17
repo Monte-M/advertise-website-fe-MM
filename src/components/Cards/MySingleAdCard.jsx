@@ -34,6 +34,8 @@ function MySingleAdCard({ item, date }) {
     }, 1000);
   };
 
+  console.log(item.id);
+
   return (
     <div className={css.container}>
       <Link to={`/single/${item.id}`}>

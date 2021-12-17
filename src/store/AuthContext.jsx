@@ -10,17 +10,17 @@ export const AuthContext = React.createContext({
 AuthContext.displayName = "AuthContext";
 
 const AuthProvider = (props) => {
-  const [email, setEmail] = useState(sessionStorage.getItem("userEmail"));
-  const [id, setId] = useState(sessionStorage.getItem("userId"));
-  const [token, setToken] = useState(sessionStorage.getItem("userToken"));
+  const [email, setEmail] = useState(localStorage.getItem("userEmail"));
+  const [id, setId] = useState(localStorage.getItem("userId"));
+  const [token, setToken] = useState(localStorage.getItem("userToken"));
 
   const login = (email, token, id) => {
     setEmail(email);
     setId(id);
     setToken(token);
-    sessionStorage.setItem("userEmail", email);
-    sessionStorage.setItem("userId", id);
-    sessionStorage.setItem("userToken", token);
+    localStorage.setItem("userEmail", email);
+    localStorage.setItem("userId", id);
+    localStorage.setItem("userToken", token);
     toast.success(email + " logged in");
 
     autoLogout();
@@ -36,9 +36,9 @@ const AuthProvider = (props) => {
     setEmail("");
     setId("");
     setToken(null);
-    sessionStorage.setItem("userEmail", "");
-    sessionStorage.setItem("userId", "");
-    sessionStorage.setItem("userToken", "");
+    localStorage.setItem("userEmail", "");
+    localStorage.setItem("userId", "");
+    localStorage.setItem("userToken", "");
     toast.success("You have logged out");
   };
 

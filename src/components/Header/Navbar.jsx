@@ -31,7 +31,7 @@ function Navbar() {
         <Icon icon='fa-bars' />
       </label>
 
-      <nav className={css.links + " mainNav"}>
+      <nav className={css.links}>
         <NavLink activeClassName='active' exact to='/'>
           Home
         </NavLink>

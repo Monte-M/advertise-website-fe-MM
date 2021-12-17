@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Icon from "../UI/Icons/Icon";
 import css from "./MySingleAdCard.module.css";
@@ -17,8 +17,6 @@ function MySingleAdCard({ item, date }) {
     dateStyle: "medium",
     timeStyle: "medium",
   };
-
-  console.log("item", item);
 
   const badDate = new Date(date);
   const goodDate = badDate.toLocaleString("lt-Lt", dateOptions);
@@ -48,24 +46,20 @@ function MySingleAdCard({ item, date }) {
             <div>
               <Icon icon='fa-clock-o' />
             </div>
-
             <h4>{goodDate}</h4>
           </div>
           <div className={css.singleTitle}>
             <div>
               <Icon icon='fa-map-marker' />
             </div>
-
             <h4>{item.city}</h4>
           </div>
           <div className={css.singleTitle}>
             <div>
               <Icon icon='fa-tasks ' />
             </div>
-
             <h4>{item.category}</h4>
           </div>
-
           <div className={css.lowerSection}>
             <h2 className={css.highlight}>$ {item.price}</h2>
             <Button onClick={handleDelete}>Delete</Button>

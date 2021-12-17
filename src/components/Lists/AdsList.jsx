@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useAuthCtx } from "../../store/AuthContext";
 import { getFetchData } from "../../utils/fetch";
 import SingleAdCard from "../Cards/SingleAdCard";
 import Pagination from "../UI/Pagination/Pagination";
@@ -7,6 +8,8 @@ import css from "./AdsList.module.css";
 const beURL = process.env.REACT_APP_BE_API;
 
 function AdsList() {
+  const authCtx = useAuthCtx();
+  const user_id = authCtx.id;
   const [itemsArr, setItemsArr] = useState([]);
   const [categoriesArr, setCategoriesArr] = useState([]);
 
@@ -17,7 +20,7 @@ function AdsList() {
 
   console.log(itemsArr);
   const getItems = async () => {
-    const data = await getFetchData(`${beURL}/items`);
+    const data = await getFetchData(`${beURL}/items/${user_id || null}`);
     setItemsArr(data.data);
   };
 
@@ -96,9 +99,14 @@ function AdsList() {
       </div>
 
       <div className={css.adsList}>
-        {currentItems.map((item) => (
-          <SingleAdCard key={item.id} item={item} date={item.post_timestamp} />
-        ))}
+        {itemsArr &&
+          currentItems.map((item) => (
+            <SingleAdCard
+              key={item.id}
+              item={item}
+              date={item.post_timestamp}
+            />
+          ))}
       </div>
       <Pagination
         itemsPerPage={itemsPerPage}

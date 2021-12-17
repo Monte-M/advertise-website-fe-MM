@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useAuthCtx } from "../../store/AuthContext";
 import { postAuthenticatedFetch } from "../../utils/fetch";
@@ -11,7 +10,6 @@ const beURL = process.env.REACT_APP_BE_API;
 
 function MyFavoritesSingleAdCard({ item, date }) {
   const [favorited, setFavorited] = useState(item.favorite_id);
-  const history = useHistory();
   const authCtx = useAuthCtx();
   const user_id = authCtx.id;
   const token = authCtx.token;
@@ -48,7 +46,6 @@ function MyFavoritesSingleAdCard({ item, date }) {
           <div onClick={handleFavorites}>
             {favorited ? <Icon icon='fa-heart' /> : <Icon icon='fa-heart-o' />}
           </div>
-
           <img src={`${beURL}/ad-img/` + item.image} alt='' />
         </div>
         <div className={css.adContainer}>
@@ -57,24 +54,20 @@ function MyFavoritesSingleAdCard({ item, date }) {
             <div>
               <Icon icon='fa-clock-o' />
             </div>
-
             <h4>{goodDate}</h4>
           </div>
           <div className={css.singleTitle}>
             <div>
               <Icon icon='fa-map-marker' />
             </div>
-
             <h4>{item.city}</h4>
           </div>
           <div className={css.singleTitle}>
             <div>
               <Icon icon='fa-tasks ' />
             </div>
-
             <h4>{item.category}</h4>
           </div>
-
           <h2 className={css.highlight}>$ {item.price}</h2>
         </div>
       </Link>

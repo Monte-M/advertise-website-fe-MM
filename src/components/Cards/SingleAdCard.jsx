@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { useAuthCtx } from "../../store/AuthContext";
-import { getFetchData, postAuthenticatedFetch } from "../../utils/fetch";
+import { postAuthenticatedFetch } from "../../utils/fetch";
 import Icon from "../UI/Icons/Icon";
 import css from "./SingleAdCard.module.css";
 
 const beURL = process.env.REACT_APP_BE_API;
 
 function SingleAdCard({ item, date }) {
-  const [favorited, setFavorited] = useState(item.favorite_id);
+  const [favorited, setFavorited] = useState(item.user_id);
   const authCtx = useAuthCtx();
   const loggedIn = authCtx.isLoggedIn;
   const user_id = authCtx.id;
@@ -46,10 +46,10 @@ function SingleAdCard({ item, date }) {
         <div className={css.imgContainer}>
           {loggedIn && (
             <div onClick={handleFavorites}>
-              {favorited ? (
-                <Icon icon='fa-heart' />
-              ) : (
+              {!favorited ? (
                 <Icon icon='fa-heart-o' />
+              ) : (
+                <Icon icon='fa-heart' />
               )}
             </div>
           )}

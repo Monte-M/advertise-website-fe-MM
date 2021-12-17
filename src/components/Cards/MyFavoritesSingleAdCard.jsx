@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
+import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useAuthCtx } from "../../store/AuthContext";
 import { postAuthenticatedFetch } from "../../utils/fetch";
@@ -9,6 +10,8 @@ import css from "./MyFavoritesSingleAdCard.module.css";
 const beURL = process.env.REACT_APP_BE_API;
 
 function MyFavoritesSingleAdCard({ item, date }) {
+  const [favorited, setFavorited] = useState(item.favorite_id);
+  const history = useHistory();
   const authCtx = useAuthCtx();
   const user_id = authCtx.id;
   const token = authCtx.token;
@@ -30,9 +33,11 @@ function MyFavoritesSingleAdCard({ item, date }) {
     );
     if (data.msg === "favorite added") {
       toast.success("Successfully added to favorites");
+      setFavorited(true);
     }
     if (data.msg === "favorite removed") {
       toast.success("Successfully removed from favorites");
+      setFavorited(false);
     }
   };
 
@@ -41,7 +46,7 @@ function MyFavoritesSingleAdCard({ item, date }) {
       <Link to={`/single/${item.item_id}`}>
         <div className={css.imgContainer}>
           <div onClick={handleFavorites}>
-            <Icon icon='fa-heart' />
+            {favorited ? <Icon icon='fa-heart' /> : <Icon icon='fa-heart-o' />}
           </div>
 
           <img src={`${beURL}/ad-img/` + item.image} alt='' />

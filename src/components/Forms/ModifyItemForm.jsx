@@ -1,25 +1,28 @@
-import Input from "./../UI/Inputs/Input";
+import Input from "../UI/Inputs/Input";
 import { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
-import Button from "./../UI/Buttons/Button";
+import Button from "../UI/Buttons/Button";
 import { getFetchData } from "../../utils/fetch";
 import { useHistory } from "react-router";
 import css from "./AddItemForm.module.css";
 import { useAuthCtx } from "../../store/AuthContext";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 const beURL = process.env.REACT_APP_BE_API;
 
 const formFields = [
-  { name: "user_id", placeholder: "User ID", type: "hidden" },
   { name: "title", placeholder: "Title" },
   { name: "description", placeholder: "Description", type: "textarea" },
   { name: "city", placeholder: "City" },
   { name: "price", placeholder: "Price", type: "number" },
+  { name: "id", placeholder: "ID", type: "hidden" },
 ];
 
-const AddItemForm = () => {
+const ModifyItem = () => {
+  const { id } = useParams();
+  const [singleAd, setSingleAd] = useState([]);
   const [response, setResponse] = useState([]);
   const [categoriesArr, setCategoriesArr] = useState([]);
   const history = useHistory();
@@ -27,21 +30,53 @@ const AddItemForm = () => {
   const token = authCtx.token;
   const user_id = authCtx.id;
 
-  const initInputs = {
-    user_id: user_id,
-    category_id: "1",
-    title: "testt",
-    description: "testtesttest",
-    price: "200",
-    city: "Kaunas",
-    item_condition: "New",
-    image: "",
+  const getSinglePost = async () => {
+    const data = await getFetchData(`${beURL}/items/${id}`);
+    setSingleAd(data.data);
   };
+
+  const initInputs = {
+    title: `${singleAd[0]?.title}`,
+    description: `${singleAd[0]?.description}`,
+    city: `${singleAd[0]?.city}`,
+    price: `${singleAd[0]?.price}`,
+    id: id,
+  };
+
+  console.log(Number(singleAd[0]?.category_id));
+
+  console.log("initInputs", initInputs);
+
+  const formik = useFormik({
+    enableReinitialize: true,
+    initialValues: initInputs,
+    validationSchema: Yup.object({
+      title: Yup.string().min(5).max(19).required(),
+      description: Yup.string().min(10).max(300).required(),
+      city: Yup.string().required(),
+      price: Yup.number().required(),
+      id: Yup.number().required(),
+    }),
+    onSubmit: (values) => {
+      postContactForm(values);
+      console.log("values", values);
+    },
+  });
+
+  useEffect(() => {
+    getSinglePost();
+    return () => {
+      setSingleAd([]);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const getCategories = async () => {
     const data = await getFetchData(`${beURL}/categories`);
     setCategoriesArr(data.data);
   };
+
+  console.log(singleAd);
 
   useEffect(() => {
     getCategories();
@@ -49,23 +84,6 @@ const AddItemForm = () => {
       setCategoriesArr([]);
     };
   }, []);
-
-  const formik = useFormik({
-    initialValues: { ...initInputs },
-    validationSchema: Yup.object({
-      user_id: Yup.number().required(),
-      category_id: Yup.number().required(),
-      title: Yup.string().min(5).max(19).required(),
-      description: Yup.string().min(10).max(300).required(),
-      city: Yup.string().required(),
-      price: Yup.number().required(),
-      item_condition: Yup.string().required(),
-      image: Yup.mixed().required(),
-    }),
-    onSubmit: (values) => {
-      postContactForm(values);
-    },
-  });
 
   const formikErrors = formik.setErrors;
   useEffect(() => {
@@ -75,22 +93,19 @@ const AddItemForm = () => {
 
   async function postContactForm(values) {
     const formData = new FormData();
-    formData.append("user_id", values.user_id);
-    formData.append("item_condition", values.item_condition);
-    formData.append("category_id", values.category_id);
     formData.append("title", values.title);
     formData.append("description", values.description);
     formData.append("city", values.city);
     formData.append("price", values.price);
-    formData.append("image", values.image);
+    formData.append("id", values.id);
 
-    const resp = await fetch(`${beURL}/items`, {
+    const resp = await fetch(`${beURL}/items/update`, {
       method: "POST",
       headers: {
-        // "Content-Type": "application/json",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: formData,
+      body: JSON.stringify(values),
     });
     const data = await resp.json();
 
@@ -99,45 +114,17 @@ const AddItemForm = () => {
       toast.error("Please check the form");
     }
     if (data.msg) {
-      toast.success("Advertise successfully added");
-      history.push("/myAds");
+      toast.success("Advertise successfully modified");
+      setTimeout(() => {
+        history.push("/myAds");
+      }, 1000);
     }
   }
 
   return (
     <div className={css.container}>
       <form onSubmit={formik.handleSubmit} className={css.formContainer}>
-        <h1>Post new AD</h1>
-        <label htmlFor='category_id'>Select category:</label>
-        <select
-          className={css.select}
-          id='category_id'
-          name='category_id'
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={Number(formik.values.category_id)}
-          error={formik.touched.category_id && formik.errors.category_id}
-        >
-          {categoriesArr.map(({ id, category }) => (
-            <option key={id} value={id}>
-              {category}
-            </option>
-          ))}
-        </select>
-        <label htmlFor='item_condition'>Item condition:</label>
-        <select
-          className={css.select}
-          id='item_condition'
-          name='item_condition'
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.item_condition}
-          error={formik.touched.item_condition && formik.errors.item_condition}
-        >
-          <option value='New'>New</option>
-          <option value='Used'>Used</option>
-        </select>
-
+        <h1>Modify you AD</h1>
         {formFields.map(({ name, placeholder, type }) => (
           <Input
             key={name}
@@ -150,13 +137,6 @@ const AddItemForm = () => {
             error={formik.touched[name] && formik.errors[name]}
           />
         ))}
-        <Input
-          onChange={(e) =>
-            formik.setFieldValue("image", e.currentTarget.files[0])
-          }
-          type='file'
-          name='image'
-        />
 
         <Button type='submit'>Post</Button>
       </form>
@@ -164,7 +144,7 @@ const AddItemForm = () => {
   );
 };
 
-export default AddItemForm;
+export default ModifyItem;
 
 function responceToErrors(response) {
   const arrayStructure = response.map((errObj) => ({

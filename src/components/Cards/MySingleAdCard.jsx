@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Icon from "../UI/Icons/Icon";
 import css from "./MySingleAdCard.module.css";
 import Button from "../UI/Buttons/Button";
 import { deleteFetch } from "../../utils/fetch";
 import { useAuthCtx } from "../../store/AuthContext";
+import toast from "react-hot-toast";
+import { useHistory } from "react-router-dom";
 
 const beURL = process.env.REACT_APP_BE_API;
 
 function MySingleAdCard({ item, date }) {
+  const history = useHistory();
+
   const dateOptions = {
     dateStyle: "medium",
     timeStyle: "medium",
   };
+
+  console.log("item", item);
 
   const badDate = new Date(date);
   const goodDate = badDate.toLocaleString("lt-Lt", dateOptions);
@@ -22,7 +28,12 @@ function MySingleAdCard({ item, date }) {
   const handleDelete = async (e) => {
     e.preventDefault();
     await deleteFetch(`${beURL}/items/delete/${item.id}`, token);
-    window.location.reload();
+
+    // eslint-disable-next-line no-useless-concat
+    toast.success("Successfully deleted - " + `${item.title}`);
+    setTimeout(() => {
+      history.push("/");
+    }, 1000);
   };
 
   return (
@@ -59,6 +70,13 @@ function MySingleAdCard({ item, date }) {
             <h2 className={css.highlight}>$ {item.price}</h2>
             <Button onClick={handleDelete}>Delete</Button>
           </div>
+        </div>
+      </Link>
+      <Link to={`/modify-item/${item.id}`} className={css.modifyContainer}>
+        <div className={css.modify}>
+          <h5>
+            <Icon icon='fa-pencil' /> Modify
+          </h5>
         </div>
       </Link>
     </div>

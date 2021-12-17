@@ -9,8 +9,6 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 const beURL = process.env.REACT_APP_BE_API;
 
-console.log(beURL);
-
 function SingleAd() {
   const { id } = useParams();
   const [singleAd, setSingleAd] = useState([]);

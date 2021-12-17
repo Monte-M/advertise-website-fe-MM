@@ -6,8 +6,6 @@ import css from "./AdsList.module.css";
 
 const beURL = process.env.REACT_APP_BE_API;
 
-console.log(beURL);
-
 function AdsList() {
   const [itemsArr, setItemsArr] = useState([]);
   const [categoriesArr, setCategoriesArr] = useState([]);
@@ -17,6 +15,7 @@ function AdsList() {
   const [currentItem, setCurrentItem] = useState(1);
   const [itemsPerPage] = useState(6);
 
+  console.log(itemsArr);
   const getItems = async () => {
     const data = await getFetchData(`${beURL}/items`);
     setItemsArr(data.data);
@@ -79,11 +78,12 @@ function AdsList() {
             <option onClick={getItems} className={css.highlight}>
               Show All
             </option>
-            {categoriesArr.map(({ id, category }) => (
-              <option key={id} value={id} onClick={getSortedItems}>
-                {category}
-              </option>
-            ))}
+            {categoriesArr &&
+              categoriesArr.map(({ id, category }) => (
+                <option key={id} value={id} onClick={getSortedItems}>
+                  {category}
+                </option>
+              ))}
           </select>
         </div>
         <div>

@@ -20,6 +20,8 @@ function MyAdsList() {
     setItemsArr(data.data);
   };
 
+  console.log(itemsArr);
+
   useEffect(() => {
     getItems();
     return () => {
@@ -30,9 +32,14 @@ function MyAdsList() {
 
   return (
     <div className={css.container}>
-      {itemsArr.map((item) => (
-        <MySingleAdCard key={item.id} item={item} date={item.post_timestamp} />
-      ))}
+      {itemsArr &&
+        itemsArr.map((item) => (
+          <MySingleAdCard
+            key={item.id}
+            item={item}
+            date={item.post_timestamp}
+          />
+        ))}
     </div>
   );
 }

@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import Button from "./../UI/Buttons/Button";
 import { postFetch } from "../../utils/fetch";
 import css from "./LoginForm.module.css";
+import { useHistory } from "react-router-dom";
 
 const beURL = process.env.REACT_APP_BE_API;
 
@@ -20,16 +21,17 @@ const formFields = [
 ];
 
 const initInputs = {
-  username: "Monte",
-  email: "mantas@gmail.com",
-  city: "Kaunas",
-  phone_number: "+37060685258",
+  username: "",
+  email: "",
+  city: "",
+  phone_number: "",
   image:
     "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.logolynx.com%2Fimages%2Flogolynx%2F03%2F039b004617d1ef43cf1769aae45d6ea2.png&f=1&nofb=1",
-  password: "123456",
-  password2: "123456",
+  password: "",
+  password2: "",
 };
 const RegisterForm = () => {
+  const history = useHistory();
   const [response, setResponse] = useState([]);
 
   const formik = useFormik({
@@ -38,7 +40,7 @@ const RegisterForm = () => {
       username: Yup.string().required(),
       email: Yup.string().email().required(),
       city: Yup.string().min(3).required(),
-      phone_number: Yup.string().min(8).required(),
+      phone_number: Yup.string().min(9).max(12).required(),
       image: Yup.string().required(),
       password: Yup.string().min(6).required(),
       password2: Yup.string()
@@ -65,7 +67,9 @@ const RegisterForm = () => {
     }
     if (data.msg) {
       toast.success("Successfully registered");
-      // history.push("/orders/2");
+      setTimeout(() => {
+        history.push("/login");
+      }, 1000);
     }
   }
 

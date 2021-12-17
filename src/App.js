@@ -2,10 +2,12 @@ import { Toaster } from "react-hot-toast";
 import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import Footer from "./components/Footer/Footer";
+import ModifyItem from "./components/Forms/ModifyItemForm";
 import Navbar from "./components/Header/Navbar";
 import AddItemPage from "./pages/AddItemPage";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
+import ModifyItemPage from "./pages/ModifyItemPage";
 import MyAdsPage from "./pages/MyAdsPage";
 import MyFavoritesPage from "./pages/MyFavoritesPage";
 import RegisterPage from "./pages/RegisterPage";
@@ -30,6 +32,11 @@ function App() {
           <RegisterPage />
         </Route>
         {loggedIn && (
+          <Route path='/modify-item/:id'>
+            <ModifyItemPage />
+          </Route>
+        )}
+        {loggedIn && (
           <Route path='/addItem'>
             <AddItemPage />
           </Route>
@@ -46,6 +53,12 @@ function App() {
         )}
         <Route exact path='/'>
           <HomePage />
+        </Route>
+
+        <Route path='*'>
+          <div className='container'>
+            <h2>Page does not exist</h2>
+          </div>
         </Route>
       </Switch>
       <Footer />

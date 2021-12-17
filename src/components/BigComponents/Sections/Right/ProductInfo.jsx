@@ -10,9 +10,6 @@ function ProductInfo({ description, category }) {
         <ProductInfoSingle title='Condition' description={description} />
         <ProductInfoSingle title='Category' description={category} />
       </div>
-      {/* {productInfo.map(({ id, title, description }) => (
-        <ProductInfoSingle key={id} title={title} description={description} />
-      ))} */}
     </div>
   );
 }

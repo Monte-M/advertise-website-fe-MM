@@ -17,8 +17,8 @@ const formFields = [
 ];
 
 const initInputs = {
-  email: "@gmail.com",
-  password: "123456",
+  email: "",
+  password: "",
 };
 const LoginForm = () => {
   const [response, setResponse] = useState([]);
@@ -55,7 +55,9 @@ const LoginForm = () => {
       const id = data.loggedInUser.id;
 
       authCtx.login(formik.values.email, token, id);
-      history.push("/");
+      setTimeout(() => {
+        history.push("/");
+      }, 1000);
     }
   }
 

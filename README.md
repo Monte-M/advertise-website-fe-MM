@@ -14,8 +14,9 @@ Use this link to see remote working website https://compassionate-rosalind-8e4c7
 
 ## Option #3 (if remote back-end is down):
 
-1. Open this repository in your source-code editor;
-2. Run npm install;
-3. Change .env example file name to .env and change its value to localhost.
-4. Run npm start.
-5. Enjoy this website.
+1. Run back-end server;
+2. Open this repository in your source-code editor;
+3. Run npm install;
+4. Change .env example file name to .env and change its value to localhost.
+5. Run npm start.
+6. Enjoy this website.

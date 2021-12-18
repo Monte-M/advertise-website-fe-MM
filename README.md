@@ -22,7 +22,7 @@ Use this link to see remote working website https://compassionate-rosalind-8e4c7
 6. Enjoy this website.
 
 
-### P.S required applications:
+### P.S required applications, which will be installed during "npm install":
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",

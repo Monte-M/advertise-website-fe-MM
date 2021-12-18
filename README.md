@@ -20,3 +20,15 @@ Use this link to see remote working website https://compassionate-rosalind-8e4c7
 4. Change .env example file name to .env and change its value to http://localhost:3001.
 5. Run npm start.
 6. Enjoy this website.
+
+
+### P.S required applications:
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "joi": "^17.5.0",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.4",
+    "mysql2": "^2.3.0"

@@ -12,7 +12,7 @@ Use this link to see remote working website https://compassionate-rosalind-8e4c7
 4. Run npm start;
 5. Enjoy this website.
 
-## Option #3 (if remote back-end is down):
+## Option #3 (run website locally on your machine, if remote back-end is down):
 
 1. Run back-end server;
 2. Open this repository in your source-code editor;

@@ -6,7 +6,7 @@ Use this link to see remote working website https://compassionate-rosalind-8e4c7
 
 ## Option #2 (run website locally on your machine):
 
-1. Open this file in your source-code editor;
+1. Open this repository in your source-code editor;
 2. Run npm install;
 3. Change .env example file name to .env
 4. Run npm start;
@@ -14,7 +14,7 @@ Use this link to see remote working website https://compassionate-rosalind-8e4c7
 
 ## Option #3 (if remote back-end is down):
 
-1. Open this file in your source-code editor;
+1. Open this repository in your source-code editor;
 2. Run npm install;
 3. Change .env example file name to .env and change its value to localhost.
 4. Run npm start.

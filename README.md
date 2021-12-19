@@ -14,7 +14,7 @@ Use this link to see remote working website https://compassionate-rosalind-8e4c7
 
 ## Option #3 (run website locally on your machine, if remote back-end is down):
 
-1. Run back-end server;
+1. Run back-end server from https://github.com/Monte-M/advertise-website-be-MM
 2. Open this repository in your source-code editor;
 3. Run npm install;
 4. Change .env example file name to .env and change its value to http://localhost:3001;

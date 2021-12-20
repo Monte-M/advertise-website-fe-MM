@@ -23,6 +23,14 @@ a {
   min-height: calc(100vh - 140px);
 }
 
+.noPage {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 20px;
+  min-height: calc(100vh - 180px);
+}
+
 nav .active {
   color: #1aa78e;
 }

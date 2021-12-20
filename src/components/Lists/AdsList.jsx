@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuthCtx } from "../../store/AuthContext";
 import { getFetchData } from "../../utils/fetch";
 import SingleAdCard from "../Cards/SingleAdCard";
+import Loader from "../UI/Loader/Loader";
 import Pagination from "../UI/Pagination/Pagination";
 import css from "./AdsList.module.css";
 
@@ -12,7 +13,7 @@ function AdsList() {
   const user_id = authCtx.id;
   const [itemsArr, setItemsArr] = useState([]);
   const [categoriesArr, setCategoriesArr] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(false);
   const [sortType, setSortType] = useState("");
   const [catId, setCatId] = useState([]);
   const [currentItem, setCurrentItem] = useState(1);
@@ -31,6 +32,7 @@ function AdsList() {
   const getCategories = async () => {
     const categoriesData = await getFetchData(`${beURL}/categories`);
     setCategoriesArr(categoriesData.data);
+    setIsLoading(true);
   };
 
   useEffect(() => {
@@ -98,16 +100,22 @@ function AdsList() {
         </div>
       </div>
 
-      <div className={css.adsList}>
-        {itemsArr &&
-          currentItems.map((item) => (
-            <SingleAdCard
-              key={item.id}
-              item={item}
-              date={item.post_timestamp}
-            />
-          ))}
-      </div>
+      {isLoading ? (
+        <>
+          <div className={css.adsList}>
+            {itemsArr &&
+              currentItems.map((item) => (
+                <SingleAdCard
+                  key={item.id}
+                  item={item}
+                  date={item.post_timestamp}
+                />
+              ))}
+          </div>
+        </>
+      ) : (
+        <Loader />
+      )}
       <Pagination
         itemsPerPage={itemsPerPage}
         totalItems={itemsArr.length}

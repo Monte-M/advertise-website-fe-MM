@@ -22,7 +22,7 @@ function App() {
     <div className='App'>
       <Navbar />
       <Toaster />
-      <React.Suspense fallback={<h1 className='container'>Loading...</h1>}>
+      <React.Suspense fallback={<h1 className='noPage'>Loading...</h1>}>
         <Switch>
           <Route path='/single/:id'>
             <SingleAdPage />

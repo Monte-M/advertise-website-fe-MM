@@ -1,5 +1,5 @@
 import React from "react";
-import SingleAd from "../components/BigComponents/SingleAd";
+import SingleAd from "../components/SingleAd/SingleAd";
 
 function SingleAdPage() {
   return (
